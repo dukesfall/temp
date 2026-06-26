@@ -18,12 +18,13 @@ body{
 }
 
 main{
-  width:min(100% - 24px,1280px);
+  width:100%;
   margin:auto;
 }
 
 .hero{
   position:relative;
+  width:calc(100% - 24px);
   min-height:85vh;
   margin:12px auto 28px;
   border-radius:18px;
@@ -143,6 +144,8 @@ h1 .muted{
 }
 
 .section{
+  width:min(100% - 24px,1280px);
+  margin:auto;
   padding:52px 0 90px;
   display:grid;
   grid-template-columns:1fr 1.15fr;
@@ -225,6 +228,7 @@ p{
 .soft{opacity:.55}
 
 .beta{
+  width:min(100% - 24px,1280px);
   margin:90px auto 60px;
   padding:38px;
   text-align:center;
@@ -240,32 +244,23 @@ p{
   color:#3d3934;
 }
 
-form{
-  display:flex;
+.contact-button{
+  display:inline-flex;
+  align-items:center;
   justify-content:center;
-  gap:14px;
-}
-
-input,
-button{
   border:1px solid #d8d0c7;
   border-radius:999px;
-  padding:15px 24px;
-  background:#fff;
-  font:inherit;
-}
-
-input{min-width:360px}
-
-button{
-  cursor:pointer;
+  padding:15px 34px;
   background:#2f2a25;
   color:#fff;
-  padding-inline:34px;
+  font:inherit;
   font-weight:500;
+  text-decoration:none;
 }
 
-button:hover{background:#1f1b17}
+.contact-button:hover{
+  background:#1f1b17;
+}
 
 .contact-email{
   display:block;
@@ -287,11 +282,8 @@ footer{
 }
 
 @media(max-width:800px){
-  main{
-    width:calc(100% - 16px);
-  }
-
   .hero{
+    width:calc(100% - 16px);
     min-height:72vh;
     margin:8px auto 24px;
     border-radius:14px;
@@ -330,6 +322,7 @@ footer{
   }
 
   .section{
+    width:calc(100% - 16px);
     grid-template-columns:1fr;
     gap:38px;
     padding:44px 0 70px;
@@ -353,13 +346,8 @@ footer{
     font-size:14px;
   }
 
-  input{
-    min-width:0;
-    width:100%;
-  }
-
-  form{
-    flex-direction:column;
+  .beta{
+    width:calc(100% - 16px);
   }
 }
 </style>
@@ -377,7 +365,6 @@ footer{
 
     <nav class="nav">
       <a href="#portfolio">Portfolio</a>
-      <a href="#strategy">Strategy</a>
       <a href="#investors">Investors</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -426,32 +413,6 @@ footer{
     </div>
   </section>
 
-  <section class="section" id="strategy">
-    <div>
-      <div class="kicker">Strategy</div>
-      <h2>Built for Consistent<br>Long-Term Returns.</h2>
-      <p>
-        We seek well-located multifamily and commercial assets where operational improvements,
-        thoughtful renovations, and disciplined asset management can unlock lasting value.
-      </p>
-    </div>
-
-    <div class="mockup">
-      <div class="mockbar">
-        <span>Assets</span>
-        <span>Markets</span>
-        <span>Performance</span>
-      </div>
-
-      <div class="tasks">
-        <div>Value-Add Communities</div>
-        <div>Core Plus Investments</div>
-        <div>Emerging Growth Markets</div>
-        <div class="soft">Long-Term Asset Management</div>
-      </div>
-    </div>
-  </section>
-
   <section class="section full" id="investors">
     <div class="kicker">Investors</div>
     <h2>Partnerships Built<br>on Trust.</h2>
@@ -464,10 +425,11 @@ footer{
   <section class="beta" id="contact">
     <p>Interested in working with Nomad Capital Ventures?</p>
 
-    <form action="mailto:damon@nomadcapital.ventures" method="post" enctype="text/plain">
-      <input type="email" name="email" placeholder="Email address">
-      <button type="submit">Contact Us</button>
-    </form>
+    <a
+      class="contact-button"
+      href="mailto:damon@nomadcapital.ventures?subject=Nomad%20Capital%20Ventures%20Inquiry">
+      Contact Us
+    </a>
 
     <a class="contact-email" href="mailto:damon@nomadcapital.ventures">
       damon@nomadcapital.ventures
