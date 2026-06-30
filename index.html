@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nomad Capital Ventures</title>
+<title>Nomad</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -53,7 +53,7 @@ main{width:100%;margin:auto}
   width:calc(100% - 24px);
   min-height:85vh;
   margin:12px auto 28px;
-  border-radius:8px;
+  border-radius:0;
   overflow:hidden;
   display:flex;
   flex-direction:column;
@@ -74,7 +74,7 @@ main{width:100%;margin:auto}
   left:0;
   right:0;
   height:96px;
-  background:rgba(0,0,0,.82);
+  background:#000;
   border-bottom:1px solid rgba(240,184,63,.14);
   z-index:18;
 }
@@ -207,7 +207,7 @@ h1 .muted{
   z-index:14;
   width:38px;
   height:38px;
-  border-radius:6px;
+  border-radius:0;
   border:1px solid rgba(255,231,160,.24);
   background:rgba(0,0,0,.24);
   color:rgba(255,243,184,.86);
@@ -310,7 +310,7 @@ p{
   margin:40px auto 60px;
   padding:38px;
   text-align:center;
-  border-radius:8px;
+  border-radius:0;
   background:
     radial-gradient(circle at top, rgba(255,241,173,.06), transparent 34%),
     linear-gradient(135deg, rgba(22,18,11,.94), rgba(4,4,4,.97));
@@ -332,7 +332,7 @@ p{
   align-items:center;
   justify-content:center;
   border:1px solid rgba(255,231,160,.42);
-  border-radius:6px;
+  border-radius:0;
   padding:15px 34px;
   background:linear-gradient(110deg,#8a5c13 0%,#f0b83f 33%,#fff3b8 49%,#d59525 72%,#6f470b 100%);
   background-size:220% 220%;
@@ -376,12 +376,12 @@ footer{
     width:calc(100% - 16px);
     min-height:72vh;
     margin:8px auto 24px;
-    border-radius:7px;
+    border-radius:0;
   }
 
   .top-bar{
     height:82px;
-    background:rgba(0,0,0,.84);
+    background:#000;
   }
 
   .logo-placeholder{
@@ -403,7 +403,7 @@ footer{
     height:34px;
     background:rgba(0,0,0,.24);
     border:1px solid rgba(255,231,160,.24);
-    border-radius:6px;
+    border-radius:0;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -427,7 +427,7 @@ footer{
     right:0;
     min-width:170px;
     padding:14px;
-    border-radius:7px;
+    border-radius:0;
     background:rgba(0,0,0,.24);
     border:1px solid rgba(255,231,160,.24);
     box-shadow:0 18px 50px rgba(0,0,0,.42);
@@ -448,7 +448,7 @@ footer{
     padding:11px 10px;
     font-size:14px;
     text-decoration:none;
-    border-radius:5px;
+    border-radius:0;
   }
 
   .nav-links a:hover{
@@ -484,6 +484,7 @@ footer{
     height:34px;
     font-size:20px;
     top:64%;
+    border-radius:0;
   }
 
   .carousel-arrow.prev{left:14px}
@@ -511,7 +512,7 @@ footer{
 
   .beta{
     width:calc(100% - 16px);
-    border-radius:7px;
+    border-radius:0;
   }
 }
 </style>
@@ -605,6 +606,7 @@ let interval;
 
 function showSlide(newIndex){
   index = (newIndex + slides.length) % slides.length;
+
   slides.forEach((slide, i) => {
     slide.classList.toggle("active", i === index);
   });
