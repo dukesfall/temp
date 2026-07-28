@@ -129,13 +129,17 @@ main{
 }
 
 .nav-links a{
-  color:#fff;
+  color:var(--gold-text);
   text-decoration:none;
   opacity:.9;
 }
 
 .nav-links a:hover{
   opacity:1;
+}
+
+.mobile-contact-link{
+  display:none;
 }
 
 .top-contact-button{
@@ -149,7 +153,7 @@ main{
   min-height:38px;
   padding:9px 18px;
   border:1px solid rgba(216,192,146,.52);
-  color:var(--gold-text);
+  color:var(--silver-text);
   background:transparent;
   text-decoration:none;
   font-size:13px;
@@ -206,17 +210,35 @@ h1{
 }
 
 h1 .hero-primary{
+  display:inline-block;
   color:var(--gold-text);
-  -webkit-text-fill-color:var(--gold-text);
+  background:linear-gradient(
+    180deg,
+    #f0dfbb 0%,
+    #d8c092 46%,
+    #a98d5e 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
   -webkit-text-stroke:0;
-  text-shadow:0 10px 30px rgba(0,0,0,.25);
+  text-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 
 h1 .muted{
+  display:inline-block;
   color:var(--silver-text);
-  -webkit-text-fill-color:var(--silver-text);
+  background:linear-gradient(
+    180deg,
+    #f1f3f5 0%,
+    #c6c9ce 50%,
+    #92979e 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
   -webkit-text-stroke:0;
-  text-shadow:0 10px 30px rgba(0,0,0,.25);
+  text-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 
 .scroll-indicator{
@@ -346,16 +368,24 @@ h1 .muted{
 }
 
 h2{
+  display:inline-block;
   font-size:clamp(32px,4.6vw,58px);
   letter-spacing:-.05em;
   font-weight:500;
   line-height:1.02;
   margin-bottom:14px;
-  color:transparent;
+  color:var(--gold-text);
+  background:linear-gradient(
+    180deg,
+    #f0dfbb 0%,
+    #d8c092 46%,
+    #a98d5e 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
   -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:0.8px rgba(216,192,146,.74);
-  paint-order:stroke fill;
-  text-shadow:0 0 18px rgba(216,192,146,.045);
+  -webkit-text-stroke:0;
+  text-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 
 p{
@@ -521,6 +551,21 @@ footer{
     background:rgba(255,255,255,.07);
   }
 
+  .mobile-contact-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:8px;
+    border:1px solid rgba(216,192,146,.58);
+    color:var(--silver-text) !important;
+    background:transparent;
+  }
+
+  .mobile-contact-link:hover{
+    border-color:rgba(216,192,146,.9);
+    background:rgba(216,192,146,.06) !important;
+  }
+
   .nav-toggle:checked + .nav-button span:nth-child(1){
     transform:translateY(6px) rotate(45deg);
   }
@@ -607,6 +652,7 @@ footer{
       <div class="nav-links">
         <a href="#our-focus">Our Focus</a>
         <a href="#investors">Investors</a>
+        <a class="mobile-contact-link" href="#contact">Contact</a>
       </div>
 
       <a class="top-contact-button" href="#contact">Contact</a>
