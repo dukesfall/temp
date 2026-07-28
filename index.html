@@ -1147,8 +1147,11 @@ footer{
 
 <script>
 (() => {
-  const groups = [
-    [document.querySelector(".hero-copy")],
+  const heroGroup = [
+    document.querySelector(".hero-copy")
+  ].filter(Boolean);
+
+  const scrollGroups = [
     [
       document.querySelector("#our-focus .kicker"),
       document.querySelector("#our-focus h2"),
@@ -1165,11 +1168,12 @@ footer{
     ]
   ].map(group => group.filter(Boolean));
 
+  const allGroups = [heroGroup, ...scrollGroups];
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  groups.forEach(group => {
+  allGroups.forEach(group => {
     group.forEach((element, index) => {
       element.classList.add("reveal-text");
       element.style.setProperty(
@@ -1179,8 +1183,29 @@ footer{
     });
   });
 
-  if (reducedMotion || !("IntersectionObserver" in window)) {
-    groups.flat().forEach(element => {
+  if (reducedMotion) {
+    allGroups.flat().forEach(element => {
+      element.classList.add("is-visible");
+    });
+    return;
+  }
+
+  /*
+    The hero is already in view when the page opens, so trigger it only
+    after the browser has painted the hidden starting state.
+  */
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        heroGroup.forEach(element => {
+          element.classList.add("is-visible");
+        });
+      }, 120);
+    });
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    scrollGroups.flat().forEach(element => {
       element.classList.add("is-visible");
     });
     return;
@@ -1191,7 +1216,7 @@ footer{
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        const group = groups.find(items =>
+        const group = scrollGroups.find(items =>
           items.includes(entry.target)
         );
 
@@ -1209,7 +1234,7 @@ footer{
     }
   );
 
-  groups.forEach(group => {
+  scrollGroups.forEach(group => {
     group.forEach(element => observer.observe(element));
   });
 })();
