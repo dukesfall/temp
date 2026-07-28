@@ -88,7 +88,19 @@ main{
   object-position:center center;
   transform:scale(1.08);
   filter:brightness(.58) saturate(.78) contrast(1.12);
+  opacity:0;
+  transition:opacity 2.8s linear;
+  will-change:opacity;
   z-index:-3;
+  pointer-events:none;
+}
+
+.hero-video.is-active{
+  opacity:1;
+}
+
+.hero-video.is-fading-out{
+  opacity:0;
 }
 
 .hero::before{
@@ -634,8 +646,27 @@ footer{
 
   <section class="hero">
 
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
+    <video
+      class="hero-video is-active"
+      id="hero-video-a"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      webkit-playsinline
+    >
       <source src="loop.mp4" type="video/mp4">
+    </video>
+
+    <video
+      class="hero-video"
+      id="hero-video-b"
+      muted
+      playsinline
+      preload="auto"
+      webkit-playsinline
+    >
+      <source src="loop2.mp4" type="video/mp4">
     </video>
 
     <div class="top-bar" aria-hidden="true"></div>
@@ -725,6 +756,139 @@ footer{
 <footer>
   © 2026 Nomad Capital Ventures. All Rights Reserved.
 </footer>
+
+
+<script>
+(() => {
+  const videos = [
+    document.getElementById("hero-video-a"),
+    document.getElementById("hero-video-b")
+  ];
+
+  const fadeDuration = 2.8;
+  let activeIndex = 0;
+  let transitioning = false;
+  let animationFrameId = null;
+
+  videos.forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.load();
+  });
+
+  function safelyPlay(video) {
+    const playPromise = video.play();
+
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        const resumePlayback = () => {
+          video.play().catch(() => {});
+          document.removeEventListener("click", resumePlayback);
+          document.removeEventListener("touchstart", resumePlayback);
+        };
+
+        document.addEventListener("click", resumePlayback, { once:true });
+        document.addEventListener("touchstart", resumePlayback, { once:true });
+      });
+    }
+  }
+
+  function resetVideo(video) {
+    video.pause();
+
+    try {
+      video.currentTime = 0;
+    } catch (error) {
+      video.addEventListener(
+        "loadedmetadata",
+        () => {
+          video.currentTime = 0;
+        },
+        { once:true }
+      );
+    }
+  }
+
+  function beginCrossfade() {
+    if (transitioning) return;
+
+    transitioning = true;
+
+    const outgoing = videos[activeIndex];
+    const nextIndex = (activeIndex + 1) % videos.length;
+    const incoming = videos[nextIndex];
+
+    try {
+      incoming.currentTime = 0;
+    } catch (error) {}
+
+    incoming.classList.remove("is-fading-out");
+    safelyPlay(incoming);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        incoming.classList.add("is-active");
+        outgoing.classList.add("is-fading-out");
+        outgoing.classList.remove("is-active");
+      });
+    });
+
+    window.setTimeout(() => {
+      resetVideo(outgoing);
+      outgoing.classList.remove("is-fading-out");
+      activeIndex = nextIndex;
+      transitioning = false;
+    }, fadeDuration * 1000 + 120);
+  }
+
+  function monitorPlayback() {
+    const activeVideo = videos[activeIndex];
+
+    if (
+      !transitioning &&
+      Number.isFinite(activeVideo.duration) &&
+      activeVideo.duration > fadeDuration &&
+      activeVideo.currentTime >= activeVideo.duration - fadeDuration
+    ) {
+      beginCrossfade();
+    }
+
+    animationFrameId = requestAnimationFrame(monitorPlayback);
+  }
+
+  videos.forEach((video) => {
+    video.addEventListener("ended", beginCrossfade);
+
+    video.addEventListener("error", () => {
+      const otherVideo = videos.find((item) => item !== video);
+
+      if (video === videos[activeIndex] && otherVideo) {
+        safelyPlay(otherVideo);
+        otherVideo.classList.add("is-active");
+        video.classList.remove("is-active");
+        activeIndex = videos.indexOf(otherVideo);
+        transitioning = false;
+      }
+    });
+  });
+
+  safelyPlay(videos[0]);
+  animationFrameId = requestAnimationFrame(monitorPlayback);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      videos.forEach((video) => video.pause());
+    } else {
+      safelyPlay(videos[activeIndex]);
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    cancelAnimationFrame(animationFrameId);
+  });
+})();
+</script>
 
 </body>
 </html>
