@@ -186,14 +186,17 @@ main{
 }
 
 .logo-placeholder{
-  position:absolute;
-  top:32px;
-  left:40px;
-  z-index:20;
+  position:fixed;
+  top:44px;
+  left:52px;
+  z-index:60;
   margin:0;
   display:flex;
   align-items:center;
   justify-content:flex-start;
+  transform-origin:center top;
+  will-change:left,top,transform;
+  pointer-events:auto;
 }
 
 .logo-placeholder img{
@@ -488,8 +491,8 @@ footer{
   }
 
   .logo-placeholder{
-    top:20px;
-    left:20px;
+    top:28px;
+    left:28px;
   }
 
   .logo-placeholder img{
@@ -643,6 +646,13 @@ footer{
 
 <body>
 
+    <div class="logo-placeholder">
+      <img
+        src="Nlogo.png"
+        alt="Nomad Capital Ventures"
+      >
+    </div>
+
 <main>
 
   <section class="hero">
@@ -697,12 +707,6 @@ footer{
       <a class="top-contact-button" href="#contact">Contact</a>
     </nav>
 
-    <div class="logo-placeholder">
-      <img
-        src="Nlogo.png"
-        alt="Nomad Capital Ventures"
-      >
-    </div>
 
     <h1>
       <span class="hero-primary">Investing in Multifamily Real Estate.</span><br>
@@ -765,6 +769,141 @@ footer{
   © 2026 Nomad Capital Ventures. All Rights Reserved.
 </footer>
 
+
+
+<script>
+(() => {
+  const logo = document.querySelector(".logo-placeholder");
+  const hero = document.querySelector(".hero");
+
+  if (!logo || !hero) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let currentProgress = 0;
+  let targetProgress = 0;
+  let frameId = null;
+  let metrics = null;
+
+  const clamp = (value, minimum, maximum) =>
+    Math.min(Math.max(value, minimum), maximum);
+
+  const lerp = (start, end, amount) =>
+    start + (end - start) * amount;
+
+  function measure() {
+    const mobile = window.matchMedia("(max-width: 800px)").matches;
+    const heroRect = hero.getBoundingClientRect();
+    const documentLeft = heroRect.left + window.scrollX;
+    const documentTop = heroRect.top + window.scrollY;
+    const logoWidth = logo.offsetWidth;
+
+    metrics = {
+      startLeft: documentLeft + (mobile ? 20 : 40),
+      startTop: documentTop + (mobile ? 20 : 32),
+      endLeft: (window.innerWidth - logoWidth) / 2,
+      endTop: mobile ? 14 : 18,
+      endScale: mobile ? 0.92 : 0.9,
+      transitionDistance: mobile ? 240 : 300
+    };
+
+    targetProgress = clamp(
+      window.scrollY / metrics.transitionDistance,
+      0,
+      1
+    );
+
+    if (reducedMotion.matches) {
+      currentProgress = targetProgress;
+      render();
+    } else {
+      startAnimation();
+    }
+  }
+
+  function render() {
+    if (!metrics) return;
+
+    const eased = currentProgress * currentProgress *
+      (3 - 2 * currentProgress);
+
+    const left = lerp(
+      metrics.startLeft,
+      metrics.endLeft,
+      eased
+    );
+
+    const top = lerp(
+      metrics.startTop,
+      metrics.endTop,
+      eased
+    );
+
+    const scale = lerp(
+      1,
+      metrics.endScale,
+      eased
+    );
+
+    logo.style.left = `${left}px`;
+    logo.style.top = `${top}px`;
+    logo.style.transform = `scale(${scale})`;
+  }
+
+  function animate() {
+    const difference = targetProgress - currentProgress;
+
+    if (Math.abs(difference) < 0.001) {
+      currentProgress = targetProgress;
+      render();
+      frameId = null;
+      return;
+    }
+
+    currentProgress += difference * 0.16;
+    render();
+    frameId = requestAnimationFrame(animate);
+  }
+
+  function startAnimation() {
+    if (frameId === null) {
+      frameId = requestAnimationFrame(animate);
+    }
+  }
+
+  function updateFromScroll() {
+    if (!metrics) return;
+
+    targetProgress = clamp(
+      window.scrollY / metrics.transitionDistance,
+      0,
+      1
+    );
+
+    if (reducedMotion.matches) {
+      currentProgress = targetProgress;
+      render();
+      return;
+    }
+
+    startAnimation();
+  }
+
+  window.addEventListener("scroll", updateFromScroll, {
+    passive:true
+  });
+
+  window.addEventListener("resize", measure);
+
+  if (typeof reducedMotion.addEventListener === "function") {
+    reducedMotion.addEventListener("change", measure);
+  }
+
+  measure();
+})();
+</script>
 
 <script>
 (() => {
