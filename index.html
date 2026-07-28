@@ -68,9 +68,9 @@ main{
 .top-bar{
   position:fixed;
   top:24px;
-  left:50%;
-  width:min(880px,calc(100% - 48px));
-  transform:translateX(-50%);
+  left:24px;
+  width:calc(100% - 48px);
+  transform:none;
   height:var(--top-bar-height);
   background:#000;
   border:1px solid rgba(216,192,146,.12);
@@ -120,10 +120,10 @@ main{
 .nav{
   position:absolute;
   top:24px;
-  left:50%;
-  width:min(880px,calc(100% - 48px));
+  left:24px;
+  width:calc(100% - 48px);
   height:var(--top-bar-height);
-  transform:translateX(-50%);
+  transform:none;
   z-index:50;
   display:flex;
   align-items:center;
@@ -501,6 +501,12 @@ footer{
     width:108px;
   }
 
+  .top-bar{
+    left:10px;
+    width:calc(100% - 20px);
+    transform:none;
+  }
+
   .nav{
     top:10px;
     left:10px;
@@ -753,7 +759,7 @@ footer{
 
     <div class="hero-copy">
       <h1>
-        <span class="hero-primary">Multifamily Real Estate.</span><br>
+        <span class="hero-primary">Investing in Multifamily Real Estate.</span><br>
         <span class="muted">Building Long-Term Wealth.</span>
       </h1>
     </div>
@@ -847,11 +853,10 @@ footer{
     const logoWidth = logo.offsetWidth;
     const logoHeight = logo.offsetHeight;
 
-    const startBarWidth = Math.min(
-      mobile ? heroRect.width - 20 : 880,
-      heroRect.width - (mobile ? 20 : 48)
-    );
-    const startBarLeft = (window.innerWidth - startBarWidth) / 2;
+    const startBarWidth =
+      heroRect.width - (mobile ? 20 : 48);
+    const startBarLeft =
+      (window.innerWidth - startBarWidth) / 2;
     const startBarTop = documentTop + (mobile ? 10 : 24);
     const startBarHeight = mobile ? 68 : 84;
 
