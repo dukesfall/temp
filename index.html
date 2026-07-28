@@ -501,6 +501,7 @@ footer{
     left:10px;
     right:10px;
     height:var(--top-bar-height);
+    padding:0 12px;
     justify-content:flex-end;
   }
 
@@ -509,30 +510,38 @@ footer{
   }
 
   .nav-button{
-    width:34px;
-    height:34px;
-    background:none;
-    border:none;
+    width:44px;
+    height:44px;
+    background:transparent;
+    border:1px solid rgba(216,192,146,.64);
+    color:var(--gold-text);
     display:flex;
     align-items:center;
     justify-content:center;
-    flex-direction:column;
-    gap:5px;
     cursor:pointer;
+    transition:
+      border-color .22s ease,
+      background .22s ease,
+      color .22s ease;
   }
 
-  .nav-button span{
-    width:22px;
-    height:1px;
-    background:var(--text);
+  .nav-button svg{
+    width:20px;
+    height:20px;
     display:block;
-    transition:.25s ease;
+    transition:transform .25s ease;
+  }
+
+  .nav-button:hover{
+    border-color:rgba(216,192,146,.95);
+    background:rgba(216,192,146,.06);
+    color:#f0dfbb;
   }
 
   .nav-links{
     position:absolute;
     top:48px;
-    right:0;
+    right:12px;
     min-width:170px;
     padding:14px;
     border-radius:var(--corner-radius);
@@ -578,16 +587,8 @@ footer{
     background:rgba(216,192,146,.06) !important;
   }
 
-  .nav-toggle:checked + .nav-button span:nth-child(1){
-    transform:translateY(6px) rotate(45deg);
-  }
-
-  .nav-toggle:checked + .nav-button span:nth-child(2){
-    opacity:0;
-  }
-
-  .nav-toggle:checked + .nav-button span:nth-child(3){
-    transform:translateY(-6px) rotate(-45deg);
+  .nav-toggle:checked + .nav-button svg{
+    transform:rotate(180deg);
   }
 
   .nav-toggle:checked ~ .nav-links{
@@ -675,9 +676,16 @@ footer{
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
 
       <label for="nav-toggle" class="nav-button" aria-label="Open navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M6 9L12 15L18 9"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
       </label>
 
       <div class="nav-links">
