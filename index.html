@@ -72,7 +72,7 @@ main{
   width:min(880px,calc(100% - 48px));
   transform:translateX(-50%);
   height:var(--top-bar-height);
-  background:#000;
+  background:rgba(0,0,0,.75);
   border:1px solid rgba(216,192,146,.12);
   box-shadow:
     0 14px 34px rgba(0,0,0,.34),
@@ -222,7 +222,10 @@ h1{
   font-weight:400;
   color:var(--gold-text);
   letter-spacing:-0.025em;
-  text-shadow:0 10px 30px rgba(0,0,0,.25);
+  text-shadow:
+    0 3px 9px rgba(0,0,0,.48),
+    0 10px 30px rgba(0,0,0,.24);
+  filter:drop-shadow(0 5px 12px rgba(0,0,0,.28));
   color:transparent;
   -webkit-text-fill-color:transparent;
   -webkit-text-stroke:0.7px rgba(216,192,146,.72);
@@ -694,7 +697,7 @@ footer{
       preload="auto"
       webkit-playsinline
     >
-      <source src="loop.mp4" type="video/mp4">
+      <source src="loop2.mp4" type="video/mp4">
     </video>
 
     <video
@@ -705,7 +708,7 @@ footer{
       preload="auto"
       webkit-playsinline
     >
-      <source src="loop2.mp4" type="video/mp4">
+      <source src="loop.mp4" type="video/mp4">
     </video>
 
 
