@@ -645,6 +645,45 @@ footer{
     width:calc(100% - 16px);
   }
 }
+
+/* One-time crisp section text reveals */
+.reveal-text{
+  opacity:0;
+  transform:translate3d(0,24px,0);
+  filter:blur(7px);
+  transition:
+    opacity .82s cubic-bezier(.22,1,.36,1),
+    transform .82s cubic-bezier(.22,1,.36,1),
+    filter .72s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform,filter;
+}
+
+.reveal-text.is-visible{
+  opacity:1;
+  transform:translate3d(0,0,0);
+  filter:blur(0);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal-text{
+    opacity:1;
+    transform:none;
+    filter:none;
+    transition:none;
+  }
+}
+
+
+.hero-copy{
+  position:relative;
+  z-index:1;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  padding:0 20px;
+}
+
 </style>
 </head>
 
@@ -712,10 +751,12 @@ footer{
     </video>
 
 
-    <h1>
-      <span class="hero-primary">Investing in Multifamily Real Estate.</span><br>
-      <span class="muted">Building Long-Term Wealth.</span>
-    </h1>
+    <div class="hero-copy">
+      <h1>
+        <span class="hero-primary">Investing in Multifamily Real Estate.</span><br>
+        <span class="muted">Building Long-Term Wealth.</span>
+      </h1>
+    </div>
 
     <a href="#our-focus" class="scroll-indicator" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none">
@@ -1099,6 +1140,77 @@ footer{
 
   window.addEventListener("beforeunload", () => {
     cancelAnimationFrame(animationFrameId);
+  });
+})();
+</script>
+
+
+<script>
+(() => {
+  const groups = [
+    [document.querySelector(".hero-copy")],
+    [
+      document.querySelector("#our-focus .kicker"),
+      document.querySelector("#our-focus h2"),
+      document.querySelector("#our-focus p")
+    ],
+    [
+      document.querySelector("#investors .kicker"),
+      document.querySelector("#investors h2"),
+      document.querySelector("#investors p")
+    ],
+    [
+      document.querySelector("#contact .contact-button"),
+      document.querySelector("#contact .contact-email")
+    ]
+  ].map(group => group.filter(Boolean));
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  groups.forEach(group => {
+    group.forEach((element, index) => {
+      element.classList.add("reveal-text");
+      element.style.setProperty(
+        "--reveal-delay",
+        `${index * 105}ms`
+      );
+    });
+  });
+
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    groups.flat().forEach(element => {
+      element.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const group = groups.find(items =>
+          items.includes(entry.target)
+        );
+
+        if (!group) return;
+
+        group.forEach(element => {
+          element.classList.add("is-visible");
+          observer.unobserve(element);
+        });
+      });
+    },
+    {
+      threshold:0.22,
+      rootMargin:"0px 0px -8% 0px"
+    }
+  );
+
+  groups.forEach(group => {
+    group.forEach(element => observer.observe(element));
   });
 })();
 </script>
