@@ -24,6 +24,7 @@
   --text-muted:#8d887f;
   --accent:#cdb58b;
   --accent-hover:#dfc79d;
+  --top-bar-height:104px;
 }
 
 html{
@@ -60,6 +61,16 @@ main{
   isolation:isolate;
   background:#070a08;
   border:1px solid rgba(255,255,255,.06);
+}
+
+.top-bar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:var(--top-bar-height);
+  background:#000;
+  z-index:5;
 }
 
 .hero-video{
@@ -137,6 +148,8 @@ main{
 }
 
 h1{
+  position:relative;
+  z-index:1;
   font-size:clamp(22px,3vw,36px);
   max-width:640px;
   line-height:1.18;
@@ -308,6 +321,7 @@ footer{
 @media(max-width:800px){
   :root{
     --corner-radius:8px;
+    --top-bar-height:82px;
   }
 
   .hero{
@@ -446,6 +460,8 @@ footer{
     <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
       <source src="https://www.nomadcapital.ventures/highrise.mp4" type="video/mp4">
     </video>
+
+    <div class="top-bar" aria-hidden="true"></div>
 
     <nav class="nav">
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
