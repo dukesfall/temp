@@ -224,15 +224,58 @@ h1 .muted{
   text-align:center;
 }
 
-#portfolio{
-  display:block;
+#our-focus{
+  position:relative;
+  display:flex;
+  min-height:100vh;
+  padding:110px 24px;
   text-align:center;
-  padding-top:78px;
-  padding-bottom:110px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
-#portfolio p{
+#our-focus p{
   margin:0 auto;
+}
+
+#investors{
+  position:relative;
+  min-height:100vh;
+  padding:110px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+#investors h2{
+  margin-bottom:10px;
+}
+
+#investors p{
+  margin:0 auto;
+}
+
+#investors::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:min(82%,960px);
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(205,181,139,.18) 18%,
+    rgba(223,199,157,.88) 50%,
+    rgba(205,181,139,.18) 82%,
+    transparent
+  );
+  box-shadow:
+    0 0 12px rgba(205,181,139,.34),
+    0 0 34px rgba(205,181,139,.16);
 }
 
 .kicker{
@@ -249,7 +292,7 @@ h2{
   letter-spacing:-.05em;
   font-weight:500;
   line-height:1.02;
-  margin-bottom:24px;
+  margin-bottom:14px;
 }
 
 p{
@@ -440,6 +483,16 @@ footer{
     padding:44px 0 70px;
   }
 
+  #our-focus,
+  #investors{
+    min-height:100svh;
+    padding:88px 22px;
+  }
+
+  #investors::before{
+    width:86%;
+  }
+
   h2{
     font-size:clamp(34px,9vw,48px);
   }
@@ -473,7 +526,7 @@ footer{
       </label>
 
       <div class="nav-links">
-        <a href="#portfolio">Portfolio</a>
+        <a href="#our-focus">Our Focus</a>
         <a href="#investors">Investors</a>
         <a href="#contact">Contact</a>
       </div>
@@ -491,7 +544,7 @@ footer{
       <span class="muted">Building Long-Term Wealth.</span>
     </h1>
 
-    <a href="#portfolio" class="scroll-indicator" aria-label="Scroll down">
+    <a href="#our-focus" class="scroll-indicator" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none">
         <path
           d="M6 9L12 15L18 9"
@@ -505,7 +558,7 @@ footer{
 
   </section>
 
-  <section class="section" id="portfolio">
+  <section class="section" id="our-focus">
     <div class="kicker">Our Focus</div>
 
     <h2>Disciplined Investing.</h2>
@@ -525,7 +578,7 @@ footer{
       on Trust.
     </h2>
 
-    <p style="margin:auto;">
+    <p>
       We believe transparency, disciplined execution, and aligned incentives
       create enduring relationships with our investment partners.
     </p>
