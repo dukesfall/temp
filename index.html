@@ -14,6 +14,16 @@
 
 :root{
   --corner-radius:10px;
+  --background:#080908;
+  --surface:#101210;
+  --surface-raised:#151815;
+  --border:rgba(255,255,255,.09);
+  --border-strong:rgba(255,255,255,.14);
+  --text:#f2efe9;
+  --text-soft:#c1bbb0;
+  --text-muted:#8d887f;
+  --accent:#cdb58b;
+  --accent-hover:#dfc79d;
 }
 
 html{
@@ -22,8 +32,11 @@ html{
 
 body{
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#f8f5ef;
-  color:#2f2f2f;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(205,181,139,.06),transparent 32%),
+    var(--background);
+  color:var(--text);
+  color-scheme:dark;
   line-height:1.4;
 }
 
@@ -45,7 +58,8 @@ main{
   justify-content:center;
   text-align:center;
   isolation:isolate;
-  background:#102116;
+  background:#070a08;
+  border:1px solid rgba(255,255,255,.06);
 }
 
 .hero-video{
@@ -56,7 +70,7 @@ main{
   object-fit:cover;
   object-position:center center;
   transform:scale(1.08);
-  filter:brightness(.80) saturate(.95) contrast(1.05);
+  filter:brightness(.58) saturate(.78) contrast(1.12);
   z-index:-3;
 }
 
@@ -65,8 +79,8 @@ main{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg,rgba(8,18,12,.18),rgba(8,18,12,.42)),
-    radial-gradient(circle at center,rgba(0,0,0,.02),rgba(0,0,0,.35));
+    linear-gradient(180deg,rgba(3,5,4,.20),rgba(3,5,4,.62)),
+    radial-gradient(circle at center,rgba(0,0,0,.02),rgba(0,0,0,.46));
   z-index:-2;
 }
 
@@ -197,9 +211,20 @@ h1 .muted{
   text-align:center;
 }
 
+#portfolio{
+  display:block;
+  text-align:center;
+  padding-top:78px;
+  padding-bottom:110px;
+}
+
+#portfolio p{
+  margin:0 auto;
+}
+
 .kicker{
   font-size:12px;
-  color:#8f867c;
+  color:var(--accent);
   margin-bottom:18px;
   text-transform:uppercase;
   letter-spacing:.18em;
@@ -216,54 +241,9 @@ h2{
 
 p{
   max-width:520px;
-  color:#5f5a54;
+  color:var(--text-soft);
   font-size:17px;
   font-weight:400;
-}
-
-.mockup{
-  width:100%;
-  border-radius:var(--corner-radius);
-  background:rgba(245,239,232,.78);
-  border:1px solid rgba(220,211,201,.75);
-  box-shadow:0 35px 80px rgba(68,54,34,.08);
-  overflow:hidden;
-  backdrop-filter:blur(16px);
-}
-
-.mockbar{
-  height:72px;
-  border-bottom:1px solid #d8d0c7;
-  display:flex;
-  align-items:center;
-  gap:50px;
-  padding:0 34px;
-  font-size:15px;
-  font-weight:400;
-  color:#a3998f;
-}
-
-.mockbar span:first-child{
-  color:#252525;
-  font-weight:500;
-}
-
-.tasks{
-  padding:24px 34px 30px;
-}
-
-.tasks div{
-  display:flex;
-  align-items:center;
-  min-height:58px;
-  border-bottom:1px solid #ded6cc;
-  color:#4f4a45;
-  font-size:16px;
-  font-weight:400;
-}
-
-.tasks div:last-child{
-  border-bottom:0;
 }
 
 .beta{
@@ -272,26 +252,27 @@ p{
   padding:38px;
   text-align:center;
   border-radius:var(--corner-radius);
-  background:rgba(245,239,232,.75);
-  border:1px solid rgba(220,211,201,.75);
+  background:rgba(18,21,18,.82);
+  border:1px solid var(--border);
+  box-shadow:0 24px 70px rgba(0,0,0,.28);
 }
 
 .beta p{
   margin:0 auto 24px;
   font-size:21px;
   font-weight:500;
-  color:#3d3934;
+  color:var(--text);
 }
 
 .contact-button{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  border:1px solid #d8d0c7;
+  border:1px solid rgba(205,181,139,.58);
   border-radius:var(--corner-radius);
   padding:15px 34px;
-  background:#2f2a25;
-  color:#fff;
+  background:var(--accent);
+  color:#0b0c0b;
   font:inherit;
   font-weight:500;
   text-decoration:none;
@@ -301,25 +282,25 @@ p{
 }
 
 .contact-button:hover{
-  background:#1f1b17;
+  background:var(--accent-hover);
   transform:translateY(-1px);
 }
 
 .contact-email{
   display:block;
   margin-top:18px;
-  color:#8f867c;
+  color:var(--accent);
   font-size:13px;
   text-decoration:none;
 }
 
 .contact-email:hover{
-  color:#3d3934;
+  color:var(--text);
 }
 
 footer{
   text-align:center;
-  color:#8f867c;
+  color:var(--text-muted);
   font-size:13px;
   padding:0 30px 36px;
 }
@@ -365,7 +346,7 @@ footer{
   .nav-button span{
     width:22px;
     height:1px;
-    background:#f8f5ef;
+    background:var(--text);
     display:block;
     transition:.25s ease;
   }
@@ -377,9 +358,10 @@ footer{
     min-width:170px;
     padding:14px;
     border-radius:var(--corner-radius);
-    background:#f8f5ef;
-    border:1px solid rgba(216,208,199,.9);
-    box-shadow:0 18px 50px rgba(0,0,0,.16);
+    background:rgba(15,17,15,.97);
+    border:1px solid var(--border-strong);
+    box-shadow:0 18px 55px rgba(0,0,0,.45);
+    backdrop-filter:blur(18px);
     display:flex;
     flex-direction:column;
     gap:4px;
@@ -390,7 +372,7 @@ footer{
   }
 
   .nav-links a{
-    color:#2f2f2f;
+    color:var(--text);
     opacity:1;
     text-align:center;
     padding:11px 10px;
@@ -400,7 +382,7 @@ footer{
   }
 
   .nav-links a:hover{
-    background:#eee8de;
+    background:rgba(255,255,255,.07);
   }
 
   .nav-toggle:checked + .nav-button span:nth-child(1){
@@ -446,20 +428,6 @@ footer{
 
   h2{
     font-size:clamp(34px,9vw,48px);
-  }
-
-  .mockbar{
-    gap:24px;
-    font-size:13px;
-    padding:0 24px;
-  }
-
-  .tasks{
-    padding:20px 24px 26px;
-  }
-
-  .tasks div{
-    font-size:14px;
   }
 
   .beta{
@@ -522,32 +490,15 @@ footer{
   </section>
 
   <section class="section" id="portfolio">
-    <div>
-      <div class="kicker">Our Focus</div>
+    <div class="kicker">Our Focus</div>
 
-      <h2>Disciplined Investing.</h2>
+    <h2>Disciplined Investing.</h2>
 
-      <p>
-        Nomad Capital Ventures acquires and operates multifamily and commercial
-        properties in growth-oriented markets with a focus on long-term value
-        creation, stable cash flow, and capital preservation.
-      </p>
-    </div>
-
-    <div class="mockup">
-      <div class="mockbar">
-        <span>Acquisitions</span>
-        <span>Portfolio</span>
-        <span>Markets</span>
-      </div>
-
-      <div class="tasks">
-        <div>124 Units • Phoenix, AZ</div>
-        <div>218 Units • Dallas, TX</div>
-        <div>156 Units • Nashville, TN</div>
-        <div>302 Units • Charlotte, NC</div>
-      </div>
-    </div>
+    <p>
+      Nomad Capital Ventures acquires and operates multifamily and commercial
+      properties in growth-oriented markets with a focus on long-term value
+      creation, stable cash flow, and capital preservation.
+    </p>
   </section>
 
   <section class="section full" id="investors">
