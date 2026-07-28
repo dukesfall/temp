@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
 
 :root{
   --corner-radius:0px;
-  --background:#0d0f0d;
+  --background:#080908;
   --surface:#101210;
   --surface-raised:#151815;
   --border:rgba(255,255,255,.09);
@@ -51,9 +50,9 @@ main{
 
 .hero{
   position:relative;
-  width:calc(100% - 24px);
-  min-height:85vh;
-  margin:12px auto 28px;
+  width:100%;
+  min-height:100vh;
+  margin:0 0 28px;
   border-radius:var(--corner-radius);
   overflow:hidden;
   display:flex;
@@ -68,9 +67,10 @@ main{
 
 .top-bar{
   position:fixed;
-  top:28px;
-  left:30px;
-  width:calc(100% - 60px);
+  top:24px;
+  left:50%;
+  width:min(880px,calc(100% - 48px));
+  transform:translateX(-50%);
   height:var(--top-bar-height);
   background:#000;
   border:1px solid rgba(216,192,146,.12);
@@ -119,10 +119,11 @@ main{
 
 .nav{
   position:absolute;
-  top:28px;
-  left:30px;
-  right:30px;
+  top:24px;
+  left:50%;
+  width:min(880px,calc(100% - 48px));
   height:var(--top-bar-height);
+  transform:translateX(-50%);
   z-index:50;
   display:flex;
   align-items:center;
@@ -139,7 +140,7 @@ main{
 
 .nav-links{
   display:flex;
-  gap:36px;
+  gap:24px;
   font-size:15px;
   font-weight:400;
 }
@@ -160,7 +161,7 @@ main{
 
 .top-contact-button{
   position:absolute;
-  right:24px;
+  right:18px;
   top:50%;
   transform:translateY(-50%);
   display:inline-flex;
@@ -191,8 +192,8 @@ main{
 
 .logo-placeholder{
   position:fixed;
-  top:44px;
-  left:52px;
+  top:40px;
+  left:max(36px,calc(50% - 418px));
   z-index:60;
   margin:0;
   display:flex;
@@ -483,14 +484,14 @@ footer{
   }
 
   .hero{
-    width:calc(100% - 16px);
-    min-height:72vh;
-    margin:8px auto 24px;
+    width:100%;
+    min-height:100svh;
+    margin:0 0 24px;
   }
 
   .logo-placeholder{
-    top:28px;
-    left:28px;
+    top:22px;
+    left:20px;
   }
 
   .logo-placeholder img{
@@ -498,11 +499,13 @@ footer{
   }
 
   .nav{
-    top:18px;
-    left:18px;
-    right:18px;
+    top:10px;
+    left:10px;
+    right:10px;
+    width:auto;
     height:var(--top-bar-height);
     padding:0 12px;
+    transform:none;
     justify-content:flex-end;
   }
 
@@ -800,9 +803,12 @@ footer{
     const logoWidth = logo.offsetWidth;
     const logoHeight = logo.offsetHeight;
 
-    const startBarLeft = documentLeft + (mobile ? 10 : 18);
-    const startBarTop = documentTop + (mobile ? 10 : 16);
-    const startBarWidth = heroRect.width - (mobile ? 20 : 36);
+    const startBarWidth = Math.min(
+      mobile ? heroRect.width - 20 : 880,
+      heroRect.width - (mobile ? 20 : 48)
+    );
+    const startBarLeft = (window.innerWidth - startBarWidth) / 2;
+    const startBarTop = documentTop + (mobile ? 10 : 24);
     const startBarHeight = mobile ? 68 : 84;
 
     const endLogoScale = mobile ? 0.92 : 0.9;
@@ -817,8 +823,9 @@ footer{
     const endBarTop = mobile ? 8 : 10;
 
     metrics = {
-      logoStartLeft: documentLeft + (mobile ? 20 : 40),
-      logoStartTop: documentTop + (mobile ? 20 : 32),
+      logoStartLeft: startBarLeft + (mobile ? 10 : 22),
+      logoStartTop:
+        startBarTop + ((startBarHeight - logoHeight) / 2),
       logoEndLeft: (window.innerWidth - logoWidth) / 2,
       logoEndTop: mobile ? 14 : 18,
       logoEndScale: endLogoScale,
@@ -905,6 +912,7 @@ footer{
     bar.style.top = `${barTop}px`;
     bar.style.width = `${barWidth}px`;
     bar.style.height = `${barHeight}px`;
+    bar.style.transform = "none";
   }
 
   function animate() {
