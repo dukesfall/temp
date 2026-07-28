@@ -24,7 +24,9 @@
   --text-muted:#8d887f;
   --accent:#cdb58b;
   --accent-hover:#dfc79d;
-  --top-bar-height:104px;
+  --gold-text:#d8c092;
+  --silver-text:#c6c9ce;
+  --top-bar-height:84px;
 }
 
 html{
@@ -65,11 +67,15 @@ main{
 
 .top-bar{
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
+  top:16px;
+  left:18px;
+  right:18px;
   height:var(--top-bar-height);
   background:#000;
+  border:1px solid rgba(216,192,146,.12);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.34),
+    0 0 24px rgba(216,192,146,.045);
   z-index:5;
 }
 
@@ -97,9 +103,14 @@ main{
 
 .nav{
   position:absolute;
-  top:40px;
-  right:42px;
+  top:16px;
+  left:18px;
+  right:18px;
+  height:var(--top-bar-height);
   z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .nav-toggle{
@@ -127,10 +138,41 @@ main{
   opacity:1;
 }
 
+.top-contact-button{
+  position:absolute;
+  right:24px;
+  top:50%;
+  transform:translateY(-50%);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:9px 18px;
+  border:1px solid rgba(216,192,146,.52);
+  color:var(--gold-text);
+  background:transparent;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.04em;
+  transition:
+    border-color .2s ease,
+    color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.top-contact-button:hover{
+  color:#fff;
+  border-color:rgba(216,192,146,.9);
+  background:rgba(216,192,146,.06);
+  transform:translateY(-50%) translateY(-1px);
+}
+
 .logo-placeholder{
   position:absolute;
   top:32px;
-  left:38px;
+  left:40px;
   z-index:20;
   margin:0;
   display:flex;
@@ -154,13 +196,27 @@ h1{
   max-width:640px;
   line-height:1.18;
   font-weight:400;
-  color:rgba(255,255,255,.9);
+  color:var(--gold-text);
   letter-spacing:-0.025em;
+  text-shadow:0 10px 30px rgba(0,0,0,.25);
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:0.7px rgba(216,192,146,.72);
+  paint-order:stroke fill;
+}
+
+h1 .hero-primary{
+  color:var(--gold-text);
+  -webkit-text-fill-color:var(--gold-text);
+  -webkit-text-stroke:0;
   text-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
 h1 .muted{
-  color:rgba(255,255,255,.66);
+  color:var(--silver-text);
+  -webkit-text-fill-color:var(--silver-text);
+  -webkit-text-stroke:0;
+  text-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
 .scroll-indicator{
@@ -281,6 +337,8 @@ h1 .muted{
 .kicker{
   font-size:12px;
   color:var(--accent);
+  -webkit-text-fill-color:var(--accent);
+  -webkit-text-stroke:0;
   margin-bottom:18px;
   text-transform:uppercase;
   letter-spacing:.18em;
@@ -293,11 +351,16 @@ h2{
   font-weight:500;
   line-height:1.02;
   margin-bottom:14px;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:0.8px rgba(216,192,146,.74);
+  paint-order:stroke fill;
+  text-shadow:0 0 18px rgba(216,192,146,.045);
 }
 
 p{
   max-width:520px;
-  color:var(--text-soft);
+  color:var(--silver-text);
   font-size:17px;
   font-weight:400;
 }
@@ -305,7 +368,7 @@ p{
 .beta{
   width:min(100% - 24px,1280px);
   margin:90px auto 60px;
-  padding:38px;
+  padding:42px 38px;
   text-align:center;
   border-radius:var(--corner-radius);
   background:rgba(18,21,18,.82);
@@ -317,7 +380,10 @@ p{
   margin:0 auto 24px;
   font-size:21px;
   font-weight:500;
-  color:var(--text);
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:0.65px rgba(216,192,146,.72);
+  paint-order:stroke fill;
 }
 
 .contact-button{
@@ -345,7 +411,7 @@ p{
 .contact-email{
   display:block;
   margin-top:18px;
-  color:var(--accent);
+  color:var(--silver-text);
   font-size:13px;
   text-decoration:none;
 }
@@ -364,7 +430,7 @@ footer{
 @media(max-width:800px){
   :root{
     --corner-radius:0px;
-    --top-bar-height:82px;
+    --top-bar-height:68px;
   }
 
   .hero{
@@ -373,9 +439,15 @@ footer{
     margin:8px auto 24px;
   }
 
+  .top-bar{
+    top:10px;
+    left:10px;
+    right:10px;
+  }
+
   .logo-placeholder{
-    top:24px;
-    left:24px;
+    top:20px;
+    left:20px;
   }
 
   .logo-placeholder img{
@@ -383,8 +455,15 @@ footer{
   }
 
   .nav{
-    top:24px;
-    right:24px;
+    top:10px;
+    left:10px;
+    right:10px;
+    height:var(--top-bar-height);
+    justify-content:flex-end;
+  }
+
+  .top-contact-button{
+    display:none;
   }
 
   .nav-button{
@@ -528,8 +607,9 @@ footer{
       <div class="nav-links">
         <a href="#our-focus">Our Focus</a>
         <a href="#investors">Investors</a>
-        <a href="#contact">Contact</a>
       </div>
+
+      <a class="top-contact-button" href="#contact">Contact</a>
     </nav>
 
     <div class="logo-placeholder">
@@ -540,7 +620,7 @@ footer{
     </div>
 
     <h1>
-      Investing in Multifamily Real Estate.<br>
+      <span class="hero-primary">Investing in Multifamily Real Estate.</span><br>
       <span class="muted">Building Long-Term Wealth.</span>
     </h1>
 
@@ -585,8 +665,6 @@ footer{
   </section>
 
   <section class="beta" id="contact">
-    <p>Interested in working with Nomad?</p>
-
     <a class="contact-button" href="mailto:damon@nomadcapital.ventures">
       Contact Us
     </a>
