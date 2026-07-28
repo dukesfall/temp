@@ -66,17 +66,20 @@ main{
 }
 
 .top-bar{
-  position:absolute;
-  top:16px;
-  left:18px;
-  right:18px;
+  position:fixed;
+  top:28px;
+  left:30px;
+  width:calc(100% - 60px);
   height:var(--top-bar-height);
   background:#000;
   border:1px solid rgba(216,192,146,.12);
   box-shadow:
     0 14px 34px rgba(0,0,0,.34),
     0 0 24px rgba(216,192,146,.045);
-  z-index:5;
+  z-index:40;
+  pointer-events:none;
+  transform-origin:center top;
+  will-change:left,top,width,height,transform;
 }
 
 .hero-video{
@@ -115,11 +118,11 @@ main{
 
 .nav{
   position:absolute;
-  top:16px;
-  left:18px;
-  right:18px;
+  top:28px;
+  left:30px;
+  right:30px;
   height:var(--top-bar-height);
-  z-index:20;
+  z-index:50;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -484,12 +487,6 @@ footer{
     margin:8px auto 24px;
   }
 
-  .top-bar{
-    top:10px;
-    left:10px;
-    right:10px;
-  }
-
   .logo-placeholder{
     top:28px;
     left:28px;
@@ -500,9 +497,9 @@ footer{
   }
 
   .nav{
-    top:10px;
-    left:10px;
-    right:10px;
+    top:18px;
+    left:18px;
+    right:18px;
     height:var(--top-bar-height);
     padding:0 12px;
     justify-content:flex-end;
@@ -646,12 +643,39 @@ footer{
 
 <body>
 
+    <div class="top-bar" aria-hidden="true"></div>
+
     <div class="logo-placeholder">
       <img
         src="Nlogo.png"
         alt="Nomad Capital Ventures"
       >
     </div>
+
+    <nav class="nav">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <label for="nav-toggle" class="nav-button" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M6 9L12 15L18 9"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </label>
+
+      <div class="nav-links">
+        <a href="#our-focus">Our Focus</a>
+        <a href="#investors">Investors</a>
+        <a class="mobile-contact-link" href="#contact">Contact</a>
+      </div>
+
+      <a class="top-contact-button" href="#contact">Contact</a>
+    </nav>
 
 <main>
 
@@ -679,33 +703,6 @@ footer{
     >
       <source src="loop2.mp4" type="video/mp4">
     </video>
-
-    <div class="top-bar" aria-hidden="true"></div>
-
-    <nav class="nav">
-      <input type="checkbox" id="nav-toggle" class="nav-toggle">
-
-      <label for="nav-toggle" class="nav-button" aria-label="Open navigation">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M6 9L12 15L18 9"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </label>
-
-      <div class="nav-links">
-        <a href="#our-focus">Our Focus</a>
-        <a href="#investors">Investors</a>
-        <a class="mobile-contact-link" href="#contact">Contact</a>
-      </div>
-
-      <a class="top-contact-button" href="#contact">Contact</a>
-    </nav>
 
 
     <h1>
@@ -774,9 +771,10 @@ footer{
 <script>
 (() => {
   const logo = document.querySelector(".logo-placeholder");
+  const bar = document.querySelector(".top-bar");
   const hero = document.querySelector(".hero");
 
-  if (!logo || !hero) return;
+  if (!logo || !bar || !hero) return;
 
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -799,13 +797,40 @@ footer{
     const documentLeft = heroRect.left + window.scrollX;
     const documentTop = heroRect.top + window.scrollY;
     const logoWidth = logo.offsetWidth;
+    const logoHeight = logo.offsetHeight;
+
+    const startBarLeft = documentLeft + (mobile ? 10 : 18);
+    const startBarTop = documentTop + (mobile ? 10 : 16);
+    const startBarWidth = heroRect.width - (mobile ? 20 : 36);
+    const startBarHeight = mobile ? 68 : 84;
+
+    const endLogoScale = mobile ? 0.92 : 0.9;
+    const endLogoWidth = logoWidth * endLogoScale;
+    const endLogoHeight = logoHeight * endLogoScale;
+    const endBarWidth = endLogoWidth + (mobile ? 44 : 56);
+    const endBarHeight = Math.max(
+      endLogoHeight + (mobile ? 22 : 26),
+      mobile ? 58 : 64
+    );
+    const endBarLeft = (window.innerWidth - endBarWidth) / 2;
+    const endBarTop = mobile ? 8 : 10;
 
     metrics = {
-      startLeft: documentLeft + (mobile ? 20 : 40),
-      startTop: documentTop + (mobile ? 20 : 32),
-      endLeft: (window.innerWidth - logoWidth) / 2,
-      endTop: mobile ? 14 : 18,
-      endScale: mobile ? 0.92 : 0.9,
+      logoStartLeft: documentLeft + (mobile ? 20 : 40),
+      logoStartTop: documentTop + (mobile ? 20 : 32),
+      logoEndLeft: (window.innerWidth - logoWidth) / 2,
+      logoEndTop: mobile ? 14 : 18,
+      logoEndScale: endLogoScale,
+
+      barStartLeft: startBarLeft,
+      barStartTop: startBarTop,
+      barStartWidth: startBarWidth,
+      barStartHeight: startBarHeight,
+      barEndLeft: endBarLeft,
+      barEndTop: endBarTop,
+      barEndWidth: endBarWidth,
+      barEndHeight: endBarHeight,
+
       transitionDistance: mobile ? 240 : 300
     };
 
@@ -829,27 +854,56 @@ footer{
     const eased = currentProgress * currentProgress *
       (3 - 2 * currentProgress);
 
-    const left = lerp(
-      metrics.startLeft,
-      metrics.endLeft,
+    const logoLeft = lerp(
+      metrics.logoStartLeft,
+      metrics.logoEndLeft,
       eased
     );
 
-    const top = lerp(
-      metrics.startTop,
-      metrics.endTop,
+    const logoTop = lerp(
+      metrics.logoStartTop,
+      metrics.logoEndTop,
       eased
     );
 
-    const scale = lerp(
+    const logoScale = lerp(
       1,
-      metrics.endScale,
+      metrics.logoEndScale,
       eased
     );
 
-    logo.style.left = `${left}px`;
-    logo.style.top = `${top}px`;
-    logo.style.transform = `scale(${scale})`;
+    const barLeft = lerp(
+      metrics.barStartLeft,
+      metrics.barEndLeft,
+      eased
+    );
+
+    const barTop = lerp(
+      metrics.barStartTop,
+      metrics.barEndTop,
+      eased
+    );
+
+    const barWidth = lerp(
+      metrics.barStartWidth,
+      metrics.barEndWidth,
+      eased
+    );
+
+    const barHeight = lerp(
+      metrics.barStartHeight,
+      metrics.barEndHeight,
+      eased
+    );
+
+    logo.style.left = `${logoLeft}px`;
+    logo.style.top = `${logoTop}px`;
+    logo.style.transform = `scale(${logoScale})`;
+
+    bar.style.left = `${barLeft}px`;
+    bar.style.top = `${barTop}px`;
+    bar.style.width = `${barWidth}px`;
+    bar.style.height = `${barHeight}px`;
   }
 
   function animate() {
