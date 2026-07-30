@@ -37,6 +37,15 @@ html{
 body{
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(50% - .5px),
+      rgba(205,181,139,.034) calc(50% - .5px),
+      rgba(205,181,139,.034) calc(50% + .5px),
+      transparent calc(50% + .5px),
+      transparent 100%
+    ) center top / 82px 100% repeat,
     radial-gradient(circle at 50% -10%,rgba(205,181,139,.06),transparent 32%),
     var(--background);
   color:var(--text);
@@ -113,8 +122,11 @@ main{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg,rgba(3,5,4,.20),rgba(3,5,4,.62)),
-    radial-gradient(circle at center,rgba(0,0,0,.02),rgba(0,0,0,.46));
+    linear-gradient(
+      180deg,
+      rgba(3,5,4,.18),
+      rgba(3,5,4,.56)
+    );
   z-index:-2;
 }
 
@@ -193,8 +205,8 @@ main{
 
 .logo-placeholder{
   position:fixed;
-  top:40px;
-  left:max(36px,calc(50% - 418px));
+  top:42px;
+  left:46px;
   z-index:60;
   margin:0;
   display:flex;
@@ -545,8 +557,8 @@ footer{
   }
 
   .logo-placeholder{
-    top:22px;
-    left:20px;
+    top:27px;
+    left:22px;
   }
 
   .logo-placeholder img{
@@ -554,6 +566,7 @@ footer{
   }
 
   .top-bar{
+    top:10px;
     left:10px;
     width:calc(100% - 20px);
     transform:none;
