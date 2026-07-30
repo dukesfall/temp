@@ -41,8 +41,8 @@ body{
       90deg,
       transparent 0,
       transparent calc(50% - .5px),
-      rgba(205,181,139,.034) calc(50% - .5px),
-      rgba(205,181,139,.034) calc(50% + .5px),
+      rgba(205,181,139,.0323) calc(50% - .5px),
+      rgba(205,181,139,.0323) calc(50% + .5px),
       transparent calc(50% + .5px),
       transparent 100%
     ) center top / 82px 100% repeat,
@@ -80,8 +80,8 @@ main{
   top:24px;
   left:24px;
   width:calc(100% - 48px);
-  transform:none;
   height:var(--top-bar-height);
+  overflow:hidden;
   background:#000;
   border:1px solid rgba(216,192,146,.12);
   box-shadow:
@@ -89,8 +89,9 @@ main{
     0 0 24px rgba(216,192,146,.045);
   z-index:40;
   pointer-events:none;
+  transform:none;
   transform-origin:center top;
-  will-change:left,top,width,height,transform;
+  will-change:left,top,width,height;
 }
 
 .hero-video{
@@ -204,23 +205,28 @@ main{
 }
 
 .logo-placeholder{
-  position:fixed;
-  top:42px;
-  left:46px;
-  z-index:60;
+  position:absolute;
+  top:50%;
+  left:22px;
+  z-index:1;
   margin:0;
   display:flex;
   align-items:center;
   justify-content:flex-start;
-  transform-origin:center top;
+  transform:translateY(-50%);
+  transform-origin:center center;
   will-change:left,top,transform;
-  pointer-events:auto;
 }
 
 .logo-placeholder img{
   width:132px;
+  max-height:58px;
   height:auto;
   display:block;
+  object-fit:contain;
+  transform:scale(1);
+  transform-origin:center center;
+  will-change:transform;
   filter:
     drop-shadow(0 2px 6px rgba(0,0,0,.14))
     drop-shadow(0 6px 18px rgba(0,0,0,.06));
@@ -557,12 +563,13 @@ footer{
   }
 
   .logo-placeholder{
-    top:27px;
-    left:22px;
+    top:50%;
+    left:10px;
   }
 
   .logo-placeholder img{
     width:108px;
+    max-height:44px;
   }
 
   .top-bar{
@@ -798,13 +805,13 @@ footer{
 
 <body>
 
-    <div class="top-bar" aria-hidden="true"></div>
-
-    <div class="logo-placeholder">
-      <img
-        src="Nlogo.png"
-        alt="Nomad Capital Ventures"
-      >
+    <div class="top-bar">
+      <div class="logo-placeholder">
+        <img
+          src="Nlogo.png"
+          alt="Nomad Capital Ventures"
+        >
+      </div>
     </div>
 
     <nav class="nav">
@@ -950,10 +957,11 @@ footer{
 <script>
 (() => {
   const logo = document.querySelector(".logo-placeholder");
+  const logoImage = logo?.querySelector("img");
   const bar = document.querySelector(".top-bar");
   const hero = document.querySelector(".hero");
 
-  if (!logo || !bar || !hero) return;
+  if (!logo || !logoImage || !bar || !hero) return;
 
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -973,47 +981,63 @@ footer{
   function measure() {
     const mobile = window.matchMedia("(max-width: 800px)").matches;
     const heroRect = hero.getBoundingClientRect();
-    const documentLeft = heroRect.left + window.scrollX;
     const documentTop = heroRect.top + window.scrollY;
+
     const logoWidth = logo.offsetWidth;
     const logoHeight = logo.offsetHeight;
 
+    if (!logoWidth || !logoHeight) return;
+
     const startBarWidth =
       heroRect.width - (mobile ? 20 : 48);
+
     const startBarLeft =
       (window.innerWidth - startBarWidth) / 2;
-    const startBarTop = documentTop + (mobile ? 10 : 24);
-    const startBarHeight = mobile ? 68 : 84;
 
-    const endLogoScale = mobile ? 0.92 : 0.9;
-    const endLogoWidth = logoWidth * endLogoScale;
-    const endLogoHeight = logoHeight * endLogoScale;
-    const endBarWidth = endLogoWidth + (mobile ? 44 : 56);
+    const startBarTop =
+      documentTop + (mobile ? 10 : 24);
+
+    const startBarHeight =
+      mobile ? 68 : 84;
+
+    const endLogoScale =
+      mobile ? 0.92 : 0.9;
+
+    const endLogoWidth =
+      logoWidth * endLogoScale;
+
+    const endLogoHeight =
+      logoHeight * endLogoScale;
+
+    const endBarWidth =
+      endLogoWidth + (mobile ? 44 : 56);
+
     const endBarHeight = Math.max(
       endLogoHeight + (mobile ? 22 : 26),
       mobile ? 58 : 64
     );
-    const endBarLeft = (window.innerWidth - endBarWidth) / 2;
-    const endBarTop = mobile ? 8 : 10;
+
+    const endBarLeft =
+      (window.innerWidth - endBarWidth) / 2;
+
+    const endBarTop =
+      mobile ? 8 : 10;
 
     metrics = {
-      logoStartLeft: startBarLeft + (mobile ? 10 : 22),
-      logoStartTop:
-        startBarTop + ((startBarHeight - logoHeight) / 2),
-      logoEndLeft: (window.innerWidth - logoWidth) / 2,
-      logoEndTop: mobile ? 14 : 18,
-      logoEndScale: endLogoScale,
+      logoStartInset:mobile ? 10 : 22,
+      logoEndScale:endLogoScale,
 
-      barStartLeft: startBarLeft,
-      barStartTop: startBarTop,
-      barStartWidth: startBarWidth,
-      barStartHeight: startBarHeight,
-      barEndLeft: endBarLeft,
-      barEndTop: endBarTop,
-      barEndWidth: endBarWidth,
-      barEndHeight: endBarHeight,
+      barStartLeft:startBarLeft,
+      barStartTop:startBarTop,
+      barStartWidth:startBarWidth,
+      barStartHeight:startBarHeight,
 
-      transitionDistance: mobile ? 240 : 300
+      barEndLeft:endBarLeft,
+      barEndTop:endBarTop,
+      barEndWidth:endBarWidth,
+      barEndHeight:endBarHeight,
+
+      transitionDistance:mobile ? 240 : 300
     };
 
     targetProgress = clamp(
@@ -1033,26 +1057,9 @@ footer{
   function render() {
     if (!metrics) return;
 
-    const eased = currentProgress * currentProgress *
+    const eased =
+      currentProgress * currentProgress *
       (3 - 2 * currentProgress);
-
-    const logoLeft = lerp(
-      metrics.logoStartLeft,
-      metrics.logoEndLeft,
-      eased
-    );
-
-    const logoTop = lerp(
-      metrics.logoStartTop,
-      metrics.logoEndTop,
-      eased
-    );
-
-    const logoScale = lerp(
-      1,
-      metrics.logoEndScale,
-      eased
-    );
 
     const barLeft = lerp(
       metrics.barStartLeft,
@@ -1078,19 +1085,38 @@ footer{
       eased
     );
 
-    logo.style.left = `${logoLeft}px`;
-    logo.style.top = `${logoTop}px`;
-    logo.style.transform = `scale(${logoScale})`;
+    const logoLeft = lerp(
+      metrics.logoStartInset,
+      barWidth / 2,
+      eased
+    );
+
+    const logoScale = lerp(
+      1,
+      metrics.logoEndScale,
+      eased
+    );
+
+    const logoTranslateX =
+      -50 * eased;
 
     bar.style.left = `${barLeft}px`;
     bar.style.top = `${barTop}px`;
     bar.style.width = `${barWidth}px`;
     bar.style.height = `${barHeight}px`;
-    bar.style.transform = "none";
+
+    logo.style.left = `${logoLeft}px`;
+    logo.style.top = `${barHeight / 2}px`;
+    logo.style.transform =
+      `translate(${logoTranslateX}%, -50%)`;
+
+    logoImage.style.transform =
+      `scale(${logoScale})`;
   }
 
   function animate() {
-    const difference = targetProgress - currentProgress;
+    const difference =
+      targetProgress - currentProgress;
 
     if (Math.abs(difference) < 0.001) {
       currentProgress = targetProgress;
@@ -1138,7 +1164,13 @@ footer{
     reducedMotion.addEventListener("change", measure);
   }
 
-  measure();
+  if (logoImage.complete && logoImage.naturalWidth > 0) {
+    measure();
+  } else {
+    logoImage.addEventListener("load", measure, {
+      once:true
+    });
+  }
 })();
 </script>
 
