@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -326,28 +327,28 @@ h1 .muted{
 }
 
 .about-section{
-  width:min(100% - 48px,1180px);
-  margin:0 auto;
-  padding:96px 0 112px;
+  width:100%;
+  margin:0;
+  padding:0;
   display:grid;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:78px;
-  align-items:center;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0;
+  align-items:stretch;
 }
 
 .about-image-wrap{
   position:relative;
   width:100%;
+  aspect-ratio:1 / 1;
   overflow:hidden;
   background:var(--surface);
-  border:1px solid var(--border);
-  box-shadow:0 28px 70px rgba(0,0,0,.3);
 }
 
 .about-image-wrap img{
+  position:absolute;
+  inset:0;
   width:100%;
-  height:auto;
-  aspect-ratio:4 / 5;
+  height:100%;
   display:block;
   object-fit:cover;
   object-position:center;
@@ -355,9 +356,15 @@ h1 .muted{
 }
 
 .about-copy{
+  width:100%;
+  min-width:0;
+  padding:clamp(34px,6vw,96px);
   display:flex;
   flex-direction:column;
   align-items:flex-start;
+  justify-content:center;
+  text-align:left;
+  border-left:1px solid rgba(205,181,139,.13);
 }
 
 .about-copy h2{
@@ -679,42 +686,41 @@ footer{
   }
 
   .about-section{
-    width:calc(100% - 24px);
-    grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-    gap:18px;
-    padding:64px 0 82px;
-    align-items:center;
+    width:100%;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0;
+    padding:0;
+    align-items:stretch;
   }
 
   .about-image-wrap{
     width:100%;
-    max-width:none;
+    aspect-ratio:1 / 1;
     margin:0;
   }
 
-  .about-image-wrap img{
-    aspect-ratio:4 / 5;
-    object-fit:cover;
-  }
-
   .about-copy{
+    padding:clamp(14px,4vw,28px);
     align-items:flex-start;
+    justify-content:center;
     text-align:left;
   }
 
   .about-copy .kicker{
-    margin-bottom:10px;
+    margin-bottom:7px;
+    font-size:9px;
+    letter-spacing:.14em;
   }
 
   .about-copy h2{
-    font-size:clamp(24px,7vw,36px);
-    margin-bottom:14px;
+    font-size:clamp(18px,5.4vw,30px);
+    margin-bottom:10px;
   }
 
   .about-copy p{
     margin:0;
-    font-size:clamp(12px,3.4vw,15px);
-    line-height:1.55;
+    font-size:clamp(9px,2.7vw,13px);
+    line-height:1.45;
   }
 
   #our-focus,
