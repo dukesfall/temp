@@ -807,6 +807,7 @@ footer{
       <div class="nav-links">
         <a href="#our-focus">Our Focus</a>
         <a href="#investors">Investors</a>
+        <a href="#about">About</a>
         <a class="mobile-contact-link" href="#contact">Contact</a>
       </div>
 
@@ -848,7 +849,7 @@ footer{
       </h1>
     </div>
 
-    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+    <a href="#our-focus" class="scroll-indicator" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none">
         <path
           d="M6 9L12 15L18 9"
@@ -860,27 +861,6 @@ footer{
       </svg>
     </a>
 
-  </section>
-
-  <section class="about-section" id="about">
-    <div class="about-image-wrap">
-      <img
-        src="danram.png"
-        alt="Dan and Lynda Damon"
-      >
-    </div>
-
-    <div class="about-copy">
-      <div class="kicker">About</div>
-
-      <h2>Dan &amp; Lynda Damon</h2>
-
-      <p>
-        This is a bio about Dan and Lynda Damon. Filler text, filler text,
-        filler text, filler text, filler text, filler text, filler text,
-        filler text, filler text, and filler text.
-      </p>
-    </div>
   </section>
 
   <section class="section" id="our-focus">
@@ -907,6 +887,27 @@ footer{
       We believe transparency, disciplined execution, and aligned incentives
       create enduring relationships with our investment partners.
     </p>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-image-wrap">
+      <img
+        src="danram.png"
+        alt="Dan and Lynda Damon"
+      >
+    </div>
+
+    <div class="about-copy">
+      <div class="kicker">About</div>
+
+      <h2>Dan &amp; Lynda Damon</h2>
+
+      <p>
+        This is a bio about Dan and Lynda Damon. Filler text, filler text,
+        filler text, filler text, filler text, filler text, filler text,
+        filler text, filler text, and filler text.
+      </p>
+    </div>
   </section>
 
   <section class="beta" id="contact">
@@ -1263,12 +1264,6 @@ footer{
 
   const scrollGroups = [
     [
-      document.querySelector("#about .about-image-wrap"),
-      document.querySelector("#about .kicker"),
-      document.querySelector("#about h2"),
-      document.querySelector("#about p")
-    ],
-    [
       document.querySelector("#our-focus .kicker"),
       document.querySelector("#our-focus h2"),
       document.querySelector("#our-focus p")
@@ -1277,6 +1272,12 @@ footer{
       document.querySelector("#investors .kicker"),
       document.querySelector("#investors h2"),
       document.querySelector("#investors p")
+    ],
+    [
+      document.querySelector("#about .about-image-wrap"),
+      document.querySelector("#about .kicker"),
+      document.querySelector("#about h2"),
+      document.querySelector("#about p")
     ],
     [
       document.querySelector("#contact .contact-button"),
