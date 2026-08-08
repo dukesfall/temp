@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nomad Capital Ventures</title>
+<title>Home - Nomad Capital Ventures</title>
 
 <style>
 *{
@@ -26,7 +26,7 @@
   --accent-hover:#dfc79d;
   --gold-text:#d8c092;
   --silver-text:#c6c9ce;
-  --top-bar-height:84px;
+  --top-bar-height:116px;
 }
 
 html{
@@ -35,6 +35,7 @@ html{
 
 body{
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
   background:
     linear-gradient(
       90deg,
@@ -45,8 +46,15 @@ body{
       transparent calc(50% + .5px),
       transparent 100%
     ) center top / 82px 100% repeat,
-    radial-gradient(circle at 50% -10%,rgba(205,181,139,.06),transparent 32%),
+
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(205,181,139,.06),
+      transparent 32%
+    ),
+
     var(--background);
+
   color:var(--text);
   color-scheme:dark;
   line-height:1.4;
@@ -57,55 +65,60 @@ main{
   margin:auto;
 }
 
+
+/* ==================================================
+   HERO
+   ================================================== */
+
 .hero{
   position:relative;
+
   width:100%;
   min-height:100vh;
+
   margin:0 0 28px;
-  border-radius:var(--corner-radius);
+
   overflow:hidden;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  isolation:isolate;
-  background:#070a08;
-  border:1px solid rgba(255,255,255,.06);
-}
 
-.top-bar{
-  position:fixed;
-  top:24px;
-  left:24px;
-  width:calc(100% - 48px);
-  height:var(--top-bar-height);
-  overflow:hidden;
-  background:#000;
-  border:1px solid rgba(216,192,146,.12);
-  box-shadow:
-    0 14px 34px rgba(0,0,0,.34),
-    0 0 24px rgba(216,192,146,.045);
-  z-index:40;
-  pointer-events:none;
-  transform:none;
-  transform-origin:center top;
-  will-change:left,top,width,height;
+  text-align:center;
+
+  isolation:isolate;
+
+  background:#070a08;
+
+  border:1px solid rgba(255,255,255,.06);
 }
 
 .hero-video{
   position:absolute;
   inset:0;
+
   width:100%;
   height:100%;
+
   object-fit:cover;
   object-position:center center;
+
   transform:scale(1.08);
-  filter:brightness(.58) saturate(.78) contrast(1.12);
+
+  filter:
+    brightness(.58)
+    saturate(.78)
+    contrast(1.12);
+
   opacity:0;
+
   transition:opacity 2.8s linear;
+
   will-change:opacity;
+
   z-index:-3;
+
   pointer-events:none;
 }
 
@@ -119,26 +132,72 @@ main{
 
 .hero::before{
   content:"";
+
   position:absolute;
   inset:0;
+
   background:
     linear-gradient(
       180deg,
       rgba(3,5,4,.18),
       rgba(3,5,4,.56)
     );
+
   z-index:-2;
 }
 
-.nav{
-  position:absolute;
+
+/* ==================================================
+   TOP BAR
+   ================================================== */
+
+.top-bar{
+  position:fixed;
+
   top:24px;
   left:24px;
+
   width:calc(100% - 48px);
   height:var(--top-bar-height);
+
+  overflow:hidden;
+
+  background:#000;
+
+  border:1px solid rgba(216,192,146,.12);
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.34),
+    0 0 24px rgba(216,192,146,.045);
+
+  z-index:40;
+
+  pointer-events:none;
+
   transform:none;
+  transform-origin:center top;
+
+  will-change:left,top,width,height;
+}
+
+
+/* ==================================================
+   NAV
+   ================================================== */
+
+.nav{
+  position:absolute;
+
+  top:24px;
+  left:24px;
+
+  width:calc(100% - 48px);
+  height:var(--top-bar-height);
+
   z-index:50;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
 }
@@ -153,14 +212,18 @@ main{
 
 .nav-links{
   display:flex;
+
   gap:24px;
+
   font-size:15px;
   font-weight:400;
 }
 
 .nav-links a{
   color:var(--gold-text);
+
   text-decoration:none;
+
   opacity:.9;
 }
 
@@ -174,21 +237,36 @@ main{
 
 .top-contact-button{
   position:absolute;
+
   right:18px;
   top:50%;
+
   transform:translateY(-50%);
+
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
+
   min-height:38px;
+
   padding:9px 18px;
-  border:1px solid rgba(216,192,146,.52);
+
+  border:
+    1px solid
+    rgba(216,192,146,.52);
+
   color:var(--silver-text);
+
   background:transparent;
+
   text-decoration:none;
+
   font-size:13px;
   font-weight:500;
+
   letter-spacing:.04em;
+
   transition:
     border-color .2s ease,
     color .2s ease,
@@ -198,103 +276,183 @@ main{
 
 .top-contact-button:hover{
   color:#fff;
-  border-color:rgba(216,192,146,.9);
-  background:rgba(216,192,146,.06);
-  transform:translateY(-50%) translateY(-1px);
+
+  border-color:
+    rgba(216,192,146,.9);
+
+  background:
+    rgba(216,192,146,.06);
+
+  transform:
+    translateY(-50%)
+    translateY(-1px);
 }
+
+
+/* ==================================================
+   LOGO
+   ================================================== */
 
 .logo-placeholder{
   position:absolute;
+
   top:50%;
   left:22px;
+
   z-index:1;
-  margin:0;
+
   display:flex;
+
   align-items:center;
   justify-content:flex-start;
+
   transform:translateY(-50%);
+
   transform-origin:center center;
+
   will-change:left,top,transform;
 }
 
 .logo-placeholder img{
-  width:132px;
-  max-height:58px;
+  width:198px;
+  max-height:87px;
   height:auto;
+
   display:block;
+
   object-fit:contain;
+
   transform:scale(1);
+
   transform-origin:center center;
+
   will-change:transform;
+
   filter:
     drop-shadow(0 2px 6px rgba(0,0,0,.14))
     drop-shadow(0 6px 18px rgba(0,0,0,.06));
 }
 
+
+/* ==================================================
+   HERO COPY
+   ================================================== */
+
+.hero-copy{
+  position:relative;
+
+  z-index:1;
+
+  width:100%;
+
+  display:flex;
+
+  justify-content:center;
+
+  padding:0 20px;
+}
+
 h1{
   position:relative;
+
   z-index:1;
-  font-size:clamp(22px,3vw,36px);
+
   max-width:640px;
+
+  font-size:clamp(22px,3vw,36px);
+
   line-height:1.18;
+
   font-weight:400;
-  color:var(--gold-text);
-  letter-spacing:-0.025em;
+
+  letter-spacing:-.025em;
+
+  color:transparent;
+
+  -webkit-text-fill-color:transparent;
+
+  -webkit-text-stroke:
+    .7px rgba(216,192,146,.72);
+
   text-shadow:
     0 3px 9px rgba(0,0,0,.48),
     0 10px 30px rgba(0,0,0,.24);
-  filter:drop-shadow(0 5px 12px rgba(0,0,0,.28));
-  color:transparent;
-  -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:0.7px rgba(216,192,146,.72);
-  paint-order:stroke fill;
+
+  filter:
+    drop-shadow(
+      0 5px 12px rgba(0,0,0,.28)
+    );
 }
 
 h1 .hero-primary{
   display:inline-block;
-  color:var(--gold-text);
-  background:linear-gradient(
-    180deg,
-    #f0dfbb 0%,
-    #d8c092 46%,
-    #a98d5e 100%
-  );
+
+  background:
+    linear-gradient(
+      180deg,
+      #f0dfbb 0%,
+      #d8c092 46%,
+      #a98d5e 100%
+    );
+
   -webkit-background-clip:text;
   background-clip:text;
+
   -webkit-text-fill-color:transparent;
+
   -webkit-text-stroke:0;
-  text-shadow:0 10px 30px rgba(0,0,0,.28);
 }
 
 h1 .muted{
   display:inline-block;
-  color:var(--silver-text);
-  background:linear-gradient(
-    180deg,
-    #f1f3f5 0%,
-    #c6c9ce 50%,
-    #92979e 100%
-  );
+
+  background:
+    linear-gradient(
+      180deg,
+      #f1f3f5 0%,
+      #c6c9ce 50%,
+      #92979e 100%
+    );
+
   -webkit-background-clip:text;
   background-clip:text;
+
   -webkit-text-fill-color:transparent;
+
   -webkit-text-stroke:0;
-  text-shadow:0 10px 30px rgba(0,0,0,.28);
 }
+
+
+/* ==================================================
+   SCROLL INDICATOR
+   ================================================== */
 
 .scroll-indicator{
   position:absolute;
+
   bottom:34px;
   left:50%;
+
   transform:translateX(-50%);
+
   width:48px;
   height:48px;
+
   display:flex;
+
   justify-content:center;
   align-items:center;
+
   color:rgba(255,255,255,.72);
+
   text-decoration:none;
-  animation:scrollPrompt 2.6s ease-in-out infinite;
+
+  animation:
+    scrollPrompt
+    2.6s
+    ease-in-out
+    infinite;
+
   z-index:10;
 }
 
@@ -303,11 +461,8 @@ h1 .muted{
   height:31px;
 }
 
-.scroll-indicator:hover{
-  color:#fff;
-}
-
 @keyframes scrollPrompt{
+
   0%{
     transform:translate(-50%,0);
     opacity:.25;
@@ -326,97 +481,81 @@ h1 .muted{
     transform:translate(-50%,0);
     opacity:.25;
   }
+
 }
+
+
+/* ==================================================
+   GENERAL SECTIONS
+   ================================================== */
 
 .section{
   width:min(100% - 24px,1280px);
+
   margin:auto;
+
   padding:52px 0 90px;
+
   display:grid;
-  grid-template-columns:1fr 1.15fr;
+
+  grid-template-columns:
+    1fr 1.15fr;
+
   gap:80px;
+
   align-items:center;
 }
 
 .section.full{
   display:block;
+
   text-align:center;
 }
 
-.about-section{
-  width:100%;
-  margin:0;
-  padding:0;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0;
-  align-items:stretch;
-}
 
-.about-image-wrap{
-  position:relative;
-  width:100%;
-  aspect-ratio:1 / 1;
-  overflow:hidden;
-  background:var(--surface);
-}
-
-.about-image-wrap img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center;
-  filter:saturate(.88) contrast(1.04);
-}
-
-.about-copy{
-  width:100%;
-  min-width:0;
-  padding:clamp(34px,6vw,96px);
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:center;
-  text-align:left;
-  border-left:1px solid rgba(205,181,139,.13);
-}
-
-.about-copy h2{
-  margin-bottom:22px;
-}
-
-.about-copy p{
-  max-width:590px;
-  line-height:1.75;
-}
-
+/* ==================================================
+   OUR FOCUS
+   ================================================== */
 
 #our-focus{
   position:relative;
+
   display:flex;
-  min-height:100vh;
-  padding:110px 24px;
-  text-align:center;
+
   flex-direction:column;
+
   align-items:center;
   justify-content:center;
+
+  min-height:100vh;
+
+  padding:110px 24px;
+
+  text-align:center;
 }
 
 #our-focus p{
   margin:0 auto;
 }
 
+
+/* ==================================================
+   INVESTORS
+   ================================================== */
+
 #investors{
   position:relative;
-  min-height:100vh;
-  padding:110px 24px;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
   justify-content:center;
+
+  min-height:100vh;
+
+  padding:110px 24px;
 }
 
 #investors h2{
@@ -429,113 +568,323 @@ h1 .muted{
 
 #investors::before{
   content:"";
+
   position:absolute;
+
   top:0;
   left:50%;
+
   width:min(82%,960px);
   height:1px;
+
   transform:translateX(-50%);
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(205,181,139,.18) 18%,
-    rgba(223,199,157,.88) 50%,
-    rgba(205,181,139,.18) 82%,
-    transparent
-  );
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(205,181,139,.18) 18%,
+      rgba(223,199,157,.88) 50%,
+      rgba(205,181,139,.18) 82%,
+      transparent
+    );
+
   box-shadow:
     0 0 12px rgba(205,181,139,.34),
     0 0 34px rgba(205,181,139,.16);
 }
 
+
+/* ==================================================
+   TYPOGRAPHY
+   ================================================== */
+
 .kicker{
-  font-size:12px;
-  color:var(--accent);
-  -webkit-text-fill-color:var(--accent);
-  -webkit-text-stroke:0;
   margin-bottom:18px;
-  text-transform:uppercase;
-  letter-spacing:.18em;
+
+  font-size:12px;
   font-weight:500;
+
+  color:var(--accent);
+
+  -webkit-text-fill-color:
+    var(--accent);
+
+  -webkit-text-stroke:0;
+
+  text-transform:uppercase;
+
+  letter-spacing:.18em;
 }
 
 h2{
   display:inline-block;
-  font-size:clamp(32px,4.6vw,58px);
-  letter-spacing:-.05em;
-  font-weight:500;
-  line-height:1.02;
+
   margin-bottom:14px;
-  color:var(--gold-text);
-  background:linear-gradient(
-    180deg,
-    #f0dfbb 0%,
-    #d8c092 46%,
-    #a98d5e 100%
-  );
+
+  font-size:
+    clamp(32px,4.6vw,58px);
+
+  line-height:1.02;
+
+  font-weight:500;
+
+  letter-spacing:-.05em;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f0dfbb 0%,
+      #d8c092 46%,
+      #a98d5e 100%
+    );
+
   -webkit-background-clip:text;
+
   background-clip:text;
+
   -webkit-text-fill-color:transparent;
+
   -webkit-text-stroke:0;
-  text-shadow:0 10px 30px rgba(0,0,0,.28);
+
+  text-shadow:
+    0 10px 30px rgba(0,0,0,.28);
 }
 
 p{
   max-width:520px;
+
   color:var(--silver-text);
+
   font-size:17px;
+
   font-weight:400;
 }
 
-.beta{
-  width:100%;
-  margin:90px 0 60px;
-  padding:42px 38px;
-  text-align:center;
-  border-radius:var(--corner-radius);
-  background:#000;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  box-shadow:0 24px 70px rgba(0,0,0,.28);
+
+/* ==================================================
+   ABOUT SECTION
+   No visible "About" heading.
+   Navigation still points to #about.
+   ================================================== */
+
+.about-section{
+  width:min(
+    calc(100% - 48px),
+    1200px
+  );
+
+  margin:
+    150px auto
+    160px;
+
+  padding:78px 0 0;
+
+  scroll-margin-top:140px;
 }
 
-.beta p{
-  margin:0 auto 24px;
-  font-size:21px;
-  font-weight:500;
-  color:transparent;
-  -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:0.65px rgba(216,192,146,.72);
-  paint-order:stroke fill;
+
+/* ==================================================
+   ABOUT DARK BOX
+   ================================================== */
+
+.about-card{
+  position:relative;
+
+  width:calc(100% - 70px);
+
+  min-height:500px;
+
+  margin-left:70px;
+
+  display:flex;
+
+  align-items:center;
+
+  padding:
+    56px
+    clamp(40px,5vw,70px)
+    56px
+    clamp(465px,43vw,525px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,21,18,.99),
+      rgba(8,10,8,.99)
+    );
+
+  border:
+    1px solid
+    rgba(216,192,146,.12);
+
+  box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.40),
+
+    inset
+    0 1px 0
+    rgba(255,255,255,.025);
+}
+
+
+/* ==================================================
+   ABOUT PHOTO
+   ================================================== */
+
+.about-image-wrap{
+  position:absolute;
+
+  left:-70px;
+
+  top:-78px;
+
+  width:min(44vw,500px);
+
+  aspect-ratio:1 / 1;
+
+  overflow:hidden;
+
+  background:#151815;
+
+  border:
+    1px solid
+    rgba(255,255,255,.06);
+
+  box-shadow:
+    0 24px 65px
+    rgba(0,0,0,.46);
+
+  z-index:2;
+}
+
+.about-image-wrap img{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+  object-position:center;
+
+  filter:
+    saturate(.88)
+    contrast(1.04);
+}
+
+
+/* ==================================================
+   ABOUT BIO
+   ================================================== */
+
+.about-copy{
+  width:100%;
+  min-width:0;
+
+  padding:0;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-start;
+  justify-content:center;
+
+  text-align:left;
+}
+
+.about-copy h2{
+  margin-bottom:26px;
+}
+
+.about-copy p{
+  width:100%;
+
+  max-width:520px;
+
+  margin:0;
+
+  font-size:17px;
+
+  line-height:1.75;
+
+  color:var(--silver-text);
+}
+
+
+/* ==================================================
+   CONTACT
+   ================================================== */
+
+.beta{
+  width:100%;
+
+  margin:90px 0 60px;
+
+  padding:42px 38px;
+
+  text-align:center;
+
+  background:#000;
+
+  border-top:
+    1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.28);
 }
 
 .contact-button{
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
-  border:1px solid rgba(205,181,139,.58);
-  border-radius:var(--corner-radius);
+
   padding:15px 34px;
+
+  border:
+    1px solid
+    rgba(205,181,139,.58);
+
   background:var(--accent);
+
   color:#0b0c0b;
+
   font:inherit;
+
   font-weight:500;
+
   text-decoration:none;
+
   transition:
     background .2s ease,
     transform .2s ease;
 }
 
 .contact-button:hover{
-  background:var(--accent-hover);
-  transform:translateY(-1px);
+  background:
+    var(--accent-hover);
+
+  transform:
+    translateY(-1px);
 }
 
 .contact-email{
   display:block;
+
   margin-top:18px;
+
   color:var(--silver-text);
+
   font-size:13px;
+
   text-decoration:none;
 }
 
@@ -543,50 +892,74 @@ p{
   color:var(--text);
 }
 
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
 footer{
-  text-align:center;
-  color:var(--text-muted);
-  font-size:13px;
   padding:0 30px 36px;
+
+  text-align:center;
+
+  color:var(--text-muted);
+
+  font-size:13px;
 }
 
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
 @media(max-width:800px){
+
   :root{
     --corner-radius:0px;
-    --top-bar-height:68px;
+    --top-bar-height:88px;
   }
+
 
   .hero{
-    width:100%;
     min-height:100svh;
-    margin:0 0 24px;
+
+    margin-bottom:24px;
   }
 
+
+  /* MOBILE LOGO */
+
   .logo-placeholder{
-    top:50%;
     left:10px;
   }
 
   .logo-placeholder img{
-    width:108px;
-    max-height:44px;
+    width:162px;
+    max-height:66px;
   }
+
+
+  /* MOBILE HEADER */
 
   .top-bar{
     top:10px;
     left:10px;
+
     width:calc(100% - 20px);
-    transform:none;
   }
 
   .nav{
     top:10px;
     left:10px;
     right:10px;
+
     width:auto;
-    height:var(--top-bar-height);
+
+    height:
+      var(--top-bar-height);
+
     padding:0 12px;
-    transform:none;
+
     justify-content:flex-end;
   }
 
@@ -594,158 +967,150 @@ footer{
     display:none;
   }
 
+
+  /* MOBILE MENU */
+
   .nav-button{
     width:44px;
     height:44px;
-    background:transparent;
-    border:1px solid rgba(216,192,146,.64);
-    color:var(--gold-text);
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
+    background:transparent;
+
+    border:
+      1px solid
+      rgba(216,192,146,.64);
+
+    color:var(--gold-text);
+
     cursor:pointer;
-    transition:
-      border-color .22s ease,
-      background .22s ease,
-      color .22s ease;
   }
 
   .nav-button svg{
     width:20px;
     height:20px;
-    display:block;
-    transition:transform .25s ease;
-  }
 
-  .nav-button:hover{
-    border-color:rgba(216,192,146,.95);
-    background:rgba(216,192,146,.06);
-    color:#f0dfbb;
+    transition:
+      transform .25s ease;
   }
 
   .nav-links{
     position:absolute;
-    top:48px;
+
+    top:58px;
     right:12px;
+
     min-width:170px;
+
     padding:14px;
-    border-radius:var(--corner-radius);
-    background:rgba(15,17,15,.97);
-    border:1px solid var(--border-strong);
-    box-shadow:0 18px 55px rgba(0,0,0,.45);
-    backdrop-filter:blur(18px);
+
     display:flex;
+
     flex-direction:column;
+
     gap:4px;
+
+    background:
+      rgba(15,17,15,.97);
+
+    border:
+      1px solid
+      var(--border-strong);
+
+    box-shadow:
+      0 18px 55px
+      rgba(0,0,0,.45);
+
+    backdrop-filter:
+      blur(18px);
+
     opacity:0;
+
     visibility:hidden;
-    transform:translateY(-8px);
+
+    transform:
+      translateY(-8px);
+
     transition:.22s ease;
   }
 
   .nav-links a{
-    color:var(--text);
-    opacity:1;
-    text-align:center;
     padding:11px 10px;
-    font-size:14px;
-    text-decoration:none;
-    border-radius:var(--corner-radius);
-  }
 
-  .nav-links a:hover{
-    background:rgba(255,255,255,.07);
+    text-align:center;
+
+    color:var(--text);
+
+    font-size:14px;
   }
 
   .mobile-contact-link{
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     margin-top:8px;
-    border:1px solid rgba(216,192,146,.58);
-    color:var(--silver-text) !important;
-    background:transparent;
+
+    border:
+      1px solid
+      rgba(216,192,146,.58);
   }
 
-  .mobile-contact-link:hover{
-    border-color:rgba(216,192,146,.9);
-    background:rgba(216,192,146,.06) !important;
+  .nav-toggle:checked
+  + .nav-button svg{
+    transform:
+      rotate(180deg);
   }
 
-  .nav-toggle:checked + .nav-button svg{
-    transform:rotate(180deg);
-  }
-
-  .nav-toggle:checked ~ .nav-links{
+  .nav-toggle:checked
+  ~ .nav-links{
     opacity:1;
+
     visibility:visible;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
   }
+
+
+  /* MOBILE HERO */
 
   h1{
-    font-size:clamp(22px,6.5vw,34px);
     max-width:86vw;
+
+    font-size:
+      clamp(22px,6.5vw,34px);
   }
 
   .scroll-indicator{
     bottom:24px;
+
     width:42px;
     height:42px;
   }
 
-  .scroll-indicator svg{
-    width:27px;
-    height:27px;
-  }
+
+  /* MOBILE SECTIONS */
 
   .section{
     width:calc(100% - 16px);
+
     grid-template-columns:1fr;
+
     gap:38px;
+
     padding:44px 0 70px;
-  }
-
-  .about-section{
-    width:100%;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:0;
-    padding:0;
-    align-items:stretch;
-  }
-
-  .about-image-wrap{
-    width:100%;
-    aspect-ratio:1 / 1;
-    margin:0;
-  }
-
-  .about-copy{
-    padding:clamp(14px,4vw,28px);
-    align-items:flex-start;
-    justify-content:center;
-    text-align:left;
-  }
-
-  .about-copy .kicker{
-    margin-bottom:7px;
-    font-size:9px;
-    letter-spacing:.14em;
-  }
-
-  .about-copy h2{
-    font-size:clamp(18px,5.4vw,30px);
-    margin-bottom:10px;
-  }
-
-  .about-copy p{
-    margin:0;
-    font-size:clamp(9px,2.7vw,13px);
-    line-height:1.45;
   }
 
   #our-focus,
   #investors{
     min-height:100svh;
+
     padding:88px 22px;
   }
 
@@ -754,93 +1119,360 @@ footer{
   }
 
   h2{
-    font-size:clamp(34px,9vw,48px);
+    font-size:
+      clamp(34px,9vw,48px);
   }
+
+
+  /* ==================================================
+     MOBILE ABOUT
+     Same side-by-side composition.
+     No visible About label.
+     ================================================== */
+
+  .about-section{
+    --mobile-photo-width:
+      min(44vw,300px);
+
+    --mobile-card-offset:28px;
+
+    width:
+      calc(100% - 16px);
+
+    margin:
+      110px auto
+      110px;
+
+    padding:42px 0 0;
+
+    scroll-margin-top:100px;
+  }
+
+
+  .about-card{
+    width:
+      calc(
+        100% -
+        var(--mobile-card-offset)
+      );
+
+    min-height:
+      clamp(
+        270px,
+        78vw,
+        360px
+      );
+
+    margin-left:
+      var(--mobile-card-offset);
+
+    display:flex;
+
+    align-items:center;
+
+    padding:
+      24px
+      14px
+      24px
+      calc(
+        var(--mobile-photo-width) -
+        4px
+      );
+  }
+
+
+  .about-image-wrap{
+    position:absolute;
+
+    left:
+      calc(
+        var(--mobile-card-offset) * -1
+      );
+
+    top:-34px;
+
+    width:
+      var(--mobile-photo-width);
+
+    aspect-ratio:1 / 1;
+
+    margin:0;
+
+    transform:none;
+
+    z-index:2;
+  }
+
+
+  .about-copy{
+    width:100%;
+
+    min-width:0;
+
+    margin:0;
+
+    padding:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+    justify-content:center;
+
+    text-align:left;
+  }
+
+
+  .about-copy h2{
+    margin-bottom:
+      clamp(10px,2.5vw,18px);
+
+    font-size:
+      clamp(18px,5.2vw,30px);
+
+    line-height:1.03;
+  }
+
+
+  .about-copy p{
+    width:100%;
+
+    max-width:none;
+
+    margin:0;
+
+    font-size:
+      clamp(10px,3vw,14px);
+
+    line-height:1.5;
+  }
+
 
   .beta{
     width:100%;
   }
+
 }
 
-/* One-time crisp section text reveals */
+
+/* ==================================================
+   SMALL PHONES
+   ================================================== */
+
+@media(max-width:430px){
+
+  .about-section{
+    --mobile-photo-width:44vw;
+
+    --mobile-card-offset:22px;
+
+    width:
+      calc(100% - 14px);
+
+    margin-top:100px;
+
+    padding-top:36px;
+  }
+
+
+  .about-card{
+    min-height:285px;
+
+    padding:
+      20px
+      10px
+      20px
+      calc(
+        var(--mobile-photo-width) -
+        2px
+      );
+  }
+
+
+  .about-image-wrap{
+    top:-28px;
+  }
+
+
+  .about-copy h2{
+    font-size:
+      clamp(17px,5vw,22px);
+
+    margin-bottom:12px;
+  }
+
+
+  .about-copy p{
+    font-size:
+      clamp(10px,2.8vw,12px);
+
+    line-height:1.45;
+  }
+
+}
+
+
+/* ==================================================
+   REVEAL ANIMATION
+   ================================================== */
+
 .reveal-text{
   opacity:0;
-  transform:translate3d(0,24px,0);
+
+  transform:
+    translate3d(0,24px,0);
+
   filter:blur(7px);
+
   transition:
-    opacity .82s cubic-bezier(.22,1,.36,1),
-    transform .82s cubic-bezier(.22,1,.36,1),
-    filter .72s cubic-bezier(.22,1,.36,1);
-  transition-delay:var(--reveal-delay,0ms);
-  will-change:opacity,transform,filter;
+    opacity
+    .82s
+    cubic-bezier(.22,1,.36,1),
+
+    transform
+    .82s
+    cubic-bezier(.22,1,.36,1),
+
+    filter
+    .72s
+    cubic-bezier(.22,1,.36,1);
+
+  transition-delay:
+    var(--reveal-delay,0ms);
+
+  will-change:
+    opacity,
+    transform,
+    filter;
 }
 
 .reveal-text.is-visible{
   opacity:1;
-  transform:translate3d(0,0,0);
+
+  transform:
+    translate3d(0,0,0);
+
   filter:blur(0);
 }
 
 @media(prefers-reduced-motion:reduce){
+
   .reveal-text{
     opacity:1;
+
     transform:none;
+
     filter:none;
+
     transition:none;
   }
-}
 
-
-.hero-copy{
-  position:relative;
-  z-index:1;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  padding:0 20px;
 }
 
 </style>
 </head>
 
+
 <body>
 
-    <div class="top-bar">
-      <div class="logo-placeholder">
-        <img
-          src="Nlogo.png"
-          alt="Nomad Capital Ventures"
-        >
-      </div>
-    </div>
 
-    <nav class="nav">
-      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+<!-- TOP BAR -->
 
-      <label for="nav-toggle" class="nav-button" aria-label="Open navigation">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M6 9L12 15L18 9"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </label>
+<div class="top-bar">
 
-      <div class="nav-links">
-        <a href="#our-focus">Our Focus</a>
-        <a href="#investors">Investors</a>
-        <a href="#about">About</a>
-        <a class="mobile-contact-link" href="#contact">Contact</a>
-      </div>
+  <div class="logo-placeholder">
 
-      <a class="top-contact-button" href="#contact">Contact</a>
-    </nav>
+    <img
+      src="Nlogo.png"
+      alt="Nomad Capital Ventures"
+    >
+
+  </div>
+
+</div>
+
+
+
+<!-- NAV -->
+
+<nav class="nav">
+
+  <input
+    type="checkbox"
+    id="nav-toggle"
+    class="nav-toggle"
+  >
+
+
+  <label
+    for="nav-toggle"
+    class="nav-button"
+    aria-label="Open navigation"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M6 9L12 15L18 9"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+
+  </label>
+
+
+  <div class="nav-links">
+
+    <a href="#our-focus">
+      Our Focus
+    </a>
+
+    <a href="#investors">
+      Investors
+    </a>
+
+    <!--
+      This still scrolls to the About section.
+      Only the visible About heading was removed.
+    -->
+    <a href="#about">
+      About
+    </a>
+
+    <a
+      class="mobile-contact-link"
+      href="#contact"
+    >
+      Contact
+    </a>
+
+  </div>
+
+
+  <a
+    class="top-contact-button"
+    href="#contact"
+  >
+    Contact
+  </a>
+
+</nav>
+
+
 
 <main>
+
+
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -853,8 +1485,14 @@ footer{
       preload="auto"
       webkit-playsinline
     >
-      <source src="loop.mp4" type="video/mp4">
+
+      <source
+        src="loop.mp4"
+        type="video/mp4"
+      >
+
     </video>
+
 
     <video
       class="hero-video"
@@ -864,19 +1502,45 @@ footer{
       preload="auto"
       webkit-playsinline
     >
-      <source src="loop.mp4" type="video/mp4">
+
+      <source
+        src="loop.mp4"
+        type="video/mp4"
+      >
+
     </video>
 
 
     <div class="hero-copy">
+
       <h1>
-        <span class="hero-primary">Multifamily Real Estate.</span><br>
-        <span class="muted">Building Long-Term Wealth.</span>
+
+        <span class="hero-primary">
+          Multifamily Real Estate.
+        </span>
+
+        <br>
+
+        <span class="muted">
+          Building Long-Term Wealth.
+        </span>
+
       </h1>
+
     </div>
 
-    <a href="#our-focus" class="scroll-indicator" aria-label="Scroll down">
-      <svg viewBox="0 0 24 24" fill="none">
+
+    <a
+      href="#our-focus"
+      class="scroll-indicator"
+      aria-label="Scroll down"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+
         <path
           d="M6 9L12 15L18 9"
           stroke="currentColor"
@@ -884,25 +1548,51 @@ footer{
           stroke-linecap="round"
           stroke-linejoin="round"
         />
+
       </svg>
+
     </a>
 
   </section>
 
-  <section class="section" id="our-focus">
-    <div class="kicker">Our Focus</div>
 
-    <h2>Disciplined Investing.</h2>
+
+  <!-- OUR FOCUS -->
+
+  <section
+    class="section"
+    id="our-focus"
+  >
+
+    <div class="kicker">
+      Our Focus
+    </div>
+
+    <h2>
+      Disciplined Investing.
+    </h2>
 
     <p>
-      Nomad Capital Ventures acquires and operates multifamily and commercial
-      properties in growth-oriented markets with a focus on long-term value
-      creation, stable cash flow, and capital preservation.
+      Nomad Capital Ventures acquires and operates multifamily
+      and commercial properties in growth-oriented markets with
+      a focus on long-term value creation, stable cash flow,
+      and capital preservation.
     </p>
+
   </section>
 
-  <section class="section full" id="investors">
-    <div class="kicker">Investors</div>
+
+
+  <!-- INVESTORS -->
+
+  <section
+    class="section full"
+    id="investors"
+  >
+
+    <div class="kicker">
+      Investors
+    </div>
 
     <h2>
       Partnerships Built<br>
@@ -910,43 +1600,92 @@ footer{
     </h2>
 
     <p>
-      We believe transparency, disciplined execution, and aligned incentives
-      create enduring relationships with our investment partners.
+      We believe transparency, disciplined execution, and aligned
+      incentives create enduring relationships with our investment
+      partners.
     </p>
+
   </section>
 
-  <section class="about-section" id="about">
-    <div class="about-image-wrap">
-      <img
-        src="danram.png"
-        alt="Dan and Lynda Damon"
-      >
+
+
+  <!-- ABOUT -->
+
+  <section
+    class="about-section"
+    id="about"
+  >
+
+    <!--
+      No visible "About" word here.
+      No underline.
+      The #about ID remains for navigation.
+    -->
+
+    <div class="about-card">
+
+
+      <div class="about-image-wrap">
+
+        <img
+          src="danram.png"
+          alt="Dan and Lynda Damon"
+        >
+
+      </div>
+
+
+      <div class="about-copy">
+
+        <h2>
+          Dan &amp; Lynda Damon
+        </h2>
+
+        <p>
+          This is a bio about Dan and Lynda Damon.
+          Filler text, filler text, filler text,
+          filler text, filler text, filler text,
+          filler text, filler text, filler text,
+          and filler text.
+        </p>
+
+      </div>
+
+
     </div>
 
-    <div class="about-copy">
-      <div class="kicker">About</div>
-
-      <h2>Dan &amp; Lynda Damon</h2>
-
-      <p>
-        This is a bio about Dan and Lynda Damon. Filler text, filler text,
-        filler text, filler text, filler text, filler text, filler text,
-        filler text, filler text, and filler text.
-      </p>
-    </div>
   </section>
 
-  <section class="beta" id="contact">
-    <a class="contact-button" href="mailto:damon@nomadcapital.ventures">
+
+
+  <!-- CONTACT -->
+
+  <section
+    class="beta"
+    id="contact"
+  >
+
+    <a
+      class="contact-button"
+      href="mailto:damon@nomadcapital.ventures"
+    >
       Contact Us
     </a>
 
-    <a class="contact-email" href="mailto:damon@nomadcapital.ventures">
+
+    <a
+      class="contact-email"
+      href="mailto:damon@nomadcapital.ventures"
+    >
       damon@nomadcapital.ventures
     </a>
+
   </section>
 
+
 </main>
+
+
 
 <footer>
   © 2026 Nomad Capital Ventures. All Rights Reserved.
@@ -954,459 +1693,1159 @@ footer{
 
 
 
+<!-- HEADER SCROLL ANIMATION -->
+
 <script>
 (() => {
-  const logo = document.querySelector(".logo-placeholder");
-  const logoImage = logo?.querySelector("img");
-  const bar = document.querySelector(".top-bar");
-  const hero = document.querySelector(".hero");
 
-  if (!logo || !logoImage || !bar || !hero) return;
+  const logo =
+    document.querySelector(
+      ".logo-placeholder"
+    );
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
+  const logoImage =
+    logo?.querySelector("img");
+
+  const bar =
+    document.querySelector(
+      ".top-bar"
+    );
+
+  const hero =
+    document.querySelector(
+      ".hero"
+    );
+
+
+  if (
+    !logo ||
+    !logoImage ||
+    !bar ||
+    !hero
+  ) return;
+
+
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
 
   let currentProgress = 0;
   let targetProgress = 0;
   let frameId = null;
   let metrics = null;
 
-  const clamp = (value, minimum, maximum) =>
-    Math.min(Math.max(value, minimum), maximum);
 
-  const lerp = (start, end, amount) =>
-    start + (end - start) * amount;
+  const clamp =
+    (
+      value,
+      minimum,
+      maximum
+    ) =>
+      Math.min(
+        Math.max(
+          value,
+          minimum
+        ),
+        maximum
+      );
 
-  function measure() {
-    const mobile = window.matchMedia("(max-width: 800px)").matches;
-    const heroRect = hero.getBoundingClientRect();
-    const documentTop = heroRect.top + window.scrollY;
 
-    const logoWidth = logo.offsetWidth;
-    const logoHeight = logo.offsetHeight;
+  const lerp =
+    (
+      start,
+      end,
+      amount
+    ) =>
+      start +
+      (end - start) *
+      amount;
 
-    if (!logoWidth || !logoHeight) return;
+
+  function measure(){
+
+    const mobile =
+      window.matchMedia(
+        "(max-width: 800px)"
+      ).matches;
+
+
+    const heroRect =
+      hero.getBoundingClientRect();
+
+
+    const documentTop =
+      heroRect.top +
+      window.scrollY;
+
+
+    const logoWidth =
+      logo.offsetWidth;
+
+
+    const logoHeight =
+      logo.offsetHeight;
+
+
+    if (
+      !logoWidth ||
+      !logoHeight
+    ) return;
+
 
     const startBarWidth =
-      heroRect.width - (mobile ? 20 : 48);
+      heroRect.width -
+      (
+        mobile
+          ? 20
+          : 48
+      );
+
 
     const startBarLeft =
-      (window.innerWidth - startBarWidth) / 2;
+      (
+        window.innerWidth -
+        startBarWidth
+      ) / 2;
+
 
     const startBarTop =
-      documentTop + (mobile ? 10 : 24);
+      documentTop +
+      (
+        mobile
+          ? 10
+          : 24
+      );
+
 
     const startBarHeight =
-      mobile ? 68 : 84;
+      mobile
+        ? 88
+        : 116;
+
 
     const endLogoScale =
-      mobile ? 0.92 : 0.9;
+      mobile
+        ? .92
+        : .9;
+
 
     const endLogoWidth =
-      logoWidth * endLogoScale;
+      logoWidth *
+      endLogoScale;
+
 
     const endLogoHeight =
-      logoHeight * endLogoScale;
+      logoHeight *
+      endLogoScale;
+
 
     const endBarWidth =
-      endLogoWidth + (mobile ? 44 : 56);
+      endLogoWidth +
+      (
+        mobile
+          ? 44
+          : 56
+      );
 
-    const endBarHeight = Math.max(
-      endLogoHeight + (mobile ? 22 : 26),
-      mobile ? 58 : 64
-    );
+
+    const endBarHeight =
+      Math.max(
+
+        endLogoHeight +
+        (
+          mobile
+            ? 22
+            : 26
+        ),
+
+        mobile
+          ? 82
+          : 104
+
+      );
+
 
     const endBarLeft =
-      (window.innerWidth - endBarWidth) / 2;
+      (
+        window.innerWidth -
+        endBarWidth
+      ) / 2;
+
 
     const endBarTop =
-      mobile ? 8 : 10;
+      mobile
+        ? 8
+        : 10;
+
 
     metrics = {
-      logoStartInset:mobile ? 10 : 22,
-      logoEndScale:endLogoScale,
 
-      barStartLeft:startBarLeft,
-      barStartTop:startBarTop,
-      barStartWidth:startBarWidth,
-      barStartHeight:startBarHeight,
+      logoStartInset:
+        mobile
+          ? 10
+          : 22,
 
-      barEndLeft:endBarLeft,
-      barEndTop:endBarTop,
-      barEndWidth:endBarWidth,
-      barEndHeight:endBarHeight,
+      logoEndScale:
+        endLogoScale,
 
-      transitionDistance:mobile ? 240 : 300
+
+      barStartLeft:
+        startBarLeft,
+
+      barStartTop:
+        startBarTop,
+
+      barStartWidth:
+        startBarWidth,
+
+      barStartHeight:
+        startBarHeight,
+
+
+      barEndLeft:
+        endBarLeft,
+
+      barEndTop:
+        endBarTop,
+
+      barEndWidth:
+        endBarWidth,
+
+      barEndHeight:
+        endBarHeight,
+
+
+      transitionDistance:
+        mobile
+          ? 240
+          : 300
+
     };
 
-    targetProgress = clamp(
-      window.scrollY / metrics.transitionDistance,
-      0,
-      1
-    );
 
-    if (reducedMotion.matches) {
-      currentProgress = targetProgress;
+    targetProgress =
+      clamp(
+
+        window.scrollY /
+        metrics.transitionDistance,
+
+        0,
+        1
+
+      );
+
+
+    if (
+      reducedMotion.matches
+    ){
+
+      currentProgress =
+        targetProgress;
+
       render();
-    } else {
+
+    }else{
+
       startAnimation();
+
     }
+
   }
 
-  function render() {
+
+  function render(){
+
     if (!metrics) return;
 
+
     const eased =
-      currentProgress * currentProgress *
-      (3 - 2 * currentProgress);
+      currentProgress *
+      currentProgress *
+      (
+        3 -
+        2 * currentProgress
+      );
 
-    const barLeft = lerp(
-      metrics.barStartLeft,
-      metrics.barEndLeft,
-      eased
-    );
 
-    const barTop = lerp(
-      metrics.barStartTop,
-      metrics.barEndTop,
-      eased
-    );
+    const barLeft =
+      lerp(
+        metrics.barStartLeft,
+        metrics.barEndLeft,
+        eased
+      );
 
-    const barWidth = lerp(
-      metrics.barStartWidth,
-      metrics.barEndWidth,
-      eased
-    );
 
-    const barHeight = lerp(
-      metrics.barStartHeight,
-      metrics.barEndHeight,
-      eased
-    );
+    const barTop =
+      lerp(
+        metrics.barStartTop,
+        metrics.barEndTop,
+        eased
+      );
 
-    const logoLeft = lerp(
-      metrics.logoStartInset,
-      barWidth / 2,
-      eased
-    );
 
-    const logoScale = lerp(
-      1,
-      metrics.logoEndScale,
-      eased
-    );
+    const barWidth =
+      lerp(
+        metrics.barStartWidth,
+        metrics.barEndWidth,
+        eased
+      );
+
+
+    const barHeight =
+      lerp(
+        metrics.barStartHeight,
+        metrics.barEndHeight,
+        eased
+      );
+
+
+    const logoLeft =
+      lerp(
+        metrics.logoStartInset,
+        barWidth / 2,
+        eased
+      );
+
+
+    const logoScale =
+      lerp(
+        1,
+        metrics.logoEndScale,
+        eased
+      );
+
 
     const logoTranslateX =
       -50 * eased;
 
-    bar.style.left = `${barLeft}px`;
-    bar.style.top = `${barTop}px`;
-    bar.style.width = `${barWidth}px`;
-    bar.style.height = `${barHeight}px`;
 
-    logo.style.left = `${logoLeft}px`;
-    logo.style.top = `${barHeight / 2}px`;
+    bar.style.left =
+      `${barLeft}px`;
+
+    bar.style.top =
+      `${barTop}px`;
+
+    bar.style.width =
+      `${barWidth}px`;
+
+    bar.style.height =
+      `${barHeight}px`;
+
+
+    logo.style.left =
+      `${logoLeft}px`;
+
+    logo.style.top =
+      `${barHeight / 2}px`;
+
     logo.style.transform =
       `translate(${logoTranslateX}%, -50%)`;
 
+
     logoImage.style.transform =
       `scale(${logoScale})`;
+
   }
 
-  function animate() {
+
+  function animate(){
+
     const difference =
-      targetProgress - currentProgress;
+      targetProgress -
+      currentProgress;
 
-    if (Math.abs(difference) < 0.001) {
-      currentProgress = targetProgress;
+
+    if (
+      Math.abs(difference) <
+      .001
+    ){
+
+      currentProgress =
+        targetProgress;
+
       render();
+
       frameId = null;
+
       return;
+
     }
 
-    currentProgress += difference * 0.16;
+
+    currentProgress +=
+      difference * .16;
+
+
     render();
-    frameId = requestAnimationFrame(animate);
+
+
+    frameId =
+      requestAnimationFrame(
+        animate
+      );
+
   }
 
-  function startAnimation() {
-    if (frameId === null) {
-      frameId = requestAnimationFrame(animate);
+
+  function startAnimation(){
+
+    if (
+      frameId === null
+    ){
+
+      frameId =
+        requestAnimationFrame(
+          animate
+        );
+
     }
+
   }
 
-  function updateFromScroll() {
+
+  function updateFromScroll(){
+
     if (!metrics) return;
 
-    targetProgress = clamp(
-      window.scrollY / metrics.transitionDistance,
-      0,
-      1
-    );
 
-    if (reducedMotion.matches) {
-      currentProgress = targetProgress;
+    targetProgress =
+      clamp(
+
+        window.scrollY /
+        metrics.transitionDistance,
+
+        0,
+        1
+
+      );
+
+
+    if (
+      reducedMotion.matches
+    ){
+
+      currentProgress =
+        targetProgress;
+
       render();
+
       return;
+
     }
 
+
     startAnimation();
+
   }
 
-  window.addEventListener("scroll", updateFromScroll, {
-    passive:true
-  });
 
-  window.addEventListener("resize", measure);
+  window.addEventListener(
+    "scroll",
+    updateFromScroll,
+    {
+      passive:true
+    }
+  );
 
-  if (typeof reducedMotion.addEventListener === "function") {
-    reducedMotion.addEventListener("change", measure);
+
+  window.addEventListener(
+    "resize",
+    measure
+  );
+
+
+  if (
+    typeof
+    reducedMotion.addEventListener
+    === "function"
+  ){
+
+    reducedMotion.addEventListener(
+      "change",
+      measure
+    );
+
   }
 
-  if (logoImage.complete && logoImage.naturalWidth > 0) {
+
+  if (
+    logoImage.complete &&
+    logoImage.naturalWidth > 0
+  ){
+
     measure();
-  } else {
-    logoImage.addEventListener("load", measure, {
-      once:true
-    });
+
+  }else{
+
+    logoImage.addEventListener(
+      "load",
+      measure,
+      {
+        once:true
+      }
+    );
+
   }
+
 })();
 </script>
 
+
+
+<!-- HERO VIDEO CROSSFADE -->
+
 <script>
 (() => {
+
   const videos = [
-    document.getElementById("hero-video-a"),
-    document.getElementById("hero-video-b")
+
+    document.getElementById(
+      "hero-video-a"
+    ),
+
+    document.getElementById(
+      "hero-video-b"
+    )
+
   ];
 
+
   const fadeDuration = 2.8;
+
+
   let activeIndex = 0;
   let transitioning = false;
   let animationFrameId = null;
 
-  videos.forEach((video) => {
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.load();
-  });
 
-  function safelyPlay(video) {
-    const playPromise = video.play();
+  videos.forEach(
+    video => {
 
-    if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => {
-        const resumePlayback = () => {
-          video.play().catch(() => {});
-          document.removeEventListener("click", resumePlayback);
-          document.removeEventListener("touchstart", resumePlayback);
-        };
+      video.muted = true;
 
-        document.addEventListener("click", resumePlayback, { once:true });
-        document.addEventListener("touchstart", resumePlayback, { once:true });
-      });
-    }
-  }
+      video.defaultMuted = true;
 
-  function resetVideo(video) {
-    video.pause();
+      video.playsInline = true;
 
-    try {
-      video.currentTime = 0;
-    } catch (error) {
-      video.addEventListener(
-        "loadedmetadata",
-        () => {
-          video.currentTime = 0;
-        },
-        { once:true }
-      );
-    }
-  }
+      video.load();
 
-  function beginCrossfade() {
-    if (transitioning) return;
-
-    transitioning = true;
-
-    const outgoing = videos[activeIndex];
-    const nextIndex = (activeIndex + 1) % videos.length;
-    const incoming = videos[nextIndex];
-
-    try {
-      incoming.currentTime = 0;
-    } catch (error) {}
-
-    incoming.classList.remove("is-fading-out");
-    safelyPlay(incoming);
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        incoming.classList.add("is-active");
-        outgoing.classList.add("is-fading-out");
-        outgoing.classList.remove("is-active");
-      });
-    });
-
-    window.setTimeout(() => {
-      resetVideo(outgoing);
-      outgoing.classList.remove("is-fading-out");
-      activeIndex = nextIndex;
-      transitioning = false;
-    }, fadeDuration * 1000 + 120);
-  }
-
-  function monitorPlayback() {
-    const activeVideo = videos[activeIndex];
-
-    if (
-      !transitioning &&
-      Number.isFinite(activeVideo.duration) &&
-      activeVideo.duration > fadeDuration &&
-      activeVideo.currentTime >= activeVideo.duration - fadeDuration
-    ) {
-      beginCrossfade();
-    }
-
-    animationFrameId = requestAnimationFrame(monitorPlayback);
-  }
-
-  videos.forEach((video) => {
-    video.addEventListener("ended", beginCrossfade);
-
-    video.addEventListener("error", () => {
-      const otherVideo = videos.find((item) => item !== video);
-
-      if (video === videos[activeIndex] && otherVideo) {
-        safelyPlay(otherVideo);
-        otherVideo.classList.add("is-active");
-        video.classList.remove("is-active");
-        activeIndex = videos.indexOf(otherVideo);
-        transitioning = false;
-      }
-    });
-  });
-
-  safelyPlay(videos[0]);
-  animationFrameId = requestAnimationFrame(monitorPlayback);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      videos.forEach((video) => video.pause());
-    } else {
-      safelyPlay(videos[activeIndex]);
-    }
-  });
-
-  window.addEventListener("beforeunload", () => {
-    cancelAnimationFrame(animationFrameId);
-  });
-})();
-</script>
-
-
-<script>
-(() => {
-  const heroGroup = [
-    document.querySelector(".hero-copy")
-  ].filter(Boolean);
-
-  const scrollGroups = [
-    [
-      document.querySelector("#our-focus .kicker"),
-      document.querySelector("#our-focus h2"),
-      document.querySelector("#our-focus p")
-    ],
-    [
-      document.querySelector("#investors .kicker"),
-      document.querySelector("#investors h2"),
-      document.querySelector("#investors p")
-    ],
-    [
-      document.querySelector("#about .about-image-wrap"),
-      document.querySelector("#about .kicker"),
-      document.querySelector("#about h2"),
-      document.querySelector("#about p")
-    ],
-    [
-      document.querySelector("#contact .contact-button"),
-      document.querySelector("#contact .contact-email")
-    ]
-  ].map(group => group.filter(Boolean));
-
-  const allGroups = [heroGroup, ...scrollGroups];
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  allGroups.forEach(group => {
-    group.forEach((element, index) => {
-      element.classList.add("reveal-text");
-      element.style.setProperty(
-        "--reveal-delay",
-        `${index * 105}ms`
-      );
-    });
-  });
-
-  if (reducedMotion) {
-    allGroups.flat().forEach(element => {
-      element.classList.add("is-visible");
-    });
-    return;
-  }
-
-  /*
-    The hero is already in view when the page opens, so trigger it only
-    after the browser has painted the hidden starting state.
-  */
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        heroGroup.forEach(element => {
-          element.classList.add("is-visible");
-        });
-      }, 120);
-    });
-  });
-
-  if (!("IntersectionObserver" in window)) {
-    scrollGroups.flat().forEach(element => {
-      element.classList.add("is-visible");
-    });
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        const group = scrollGroups.find(items =>
-          items.includes(entry.target)
-        );
-
-        if (!group) return;
-
-        group.forEach(element => {
-          element.classList.add("is-visible");
-          observer.unobserve(element);
-        });
-      });
-    },
-    {
-      threshold:0.22,
-      rootMargin:"0px 0px -8% 0px"
     }
   );
 
-  scrollGroups.forEach(group => {
-    group.forEach(element => observer.observe(element));
-  });
+
+  function safelyPlay(video){
+
+    const playPromise =
+      video.play();
+
+
+    if (
+      playPromise &&
+      typeof playPromise.catch
+      === "function"
+    ){
+
+      playPromise.catch(
+        () => {
+
+          const resumePlayback =
+            () => {
+
+              video
+                .play()
+                .catch(
+                  () => {}
+                );
+
+
+              document.removeEventListener(
+                "click",
+                resumePlayback
+              );
+
+
+              document.removeEventListener(
+                "touchstart",
+                resumePlayback
+              );
+
+            };
+
+
+          document.addEventListener(
+            "click",
+            resumePlayback,
+            {
+              once:true
+            }
+          );
+
+
+          document.addEventListener(
+            "touchstart",
+            resumePlayback,
+            {
+              once:true
+            }
+          );
+
+        }
+      );
+
+    }
+
+  }
+
+
+  function resetVideo(video){
+
+    video.pause();
+
+
+    try{
+
+      video.currentTime = 0;
+
+    }catch(error){
+
+      video.addEventListener(
+        "loadedmetadata",
+        () => {
+
+          video.currentTime = 0;
+
+        },
+        {
+          once:true
+        }
+      );
+
+    }
+
+  }
+
+
+  function beginCrossfade(){
+
+    if (
+      transitioning
+    ) return;
+
+
+    transitioning = true;
+
+
+    const outgoing =
+      videos[activeIndex];
+
+
+    const nextIndex =
+      (
+        activeIndex + 1
+      ) %
+      videos.length;
+
+
+    const incoming =
+      videos[nextIndex];
+
+
+    try{
+
+      incoming.currentTime = 0;
+
+    }catch(error){}
+
+
+    incoming.classList.remove(
+      "is-fading-out"
+    );
+
+
+    safelyPlay(
+      incoming
+    );
+
+
+    requestAnimationFrame(
+      () => {
+
+        requestAnimationFrame(
+          () => {
+
+            incoming.classList.add(
+              "is-active"
+            );
+
+
+            outgoing.classList.add(
+              "is-fading-out"
+            );
+
+
+            outgoing.classList.remove(
+              "is-active"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    window.setTimeout(
+      () => {
+
+        resetVideo(
+          outgoing
+        );
+
+
+        outgoing.classList.remove(
+          "is-fading-out"
+        );
+
+
+        activeIndex =
+          nextIndex;
+
+
+        transitioning =
+          false;
+
+      },
+
+      fadeDuration *
+      1000 +
+      120
+    );
+
+  }
+
+
+  function monitorPlayback(){
+
+    const activeVideo =
+      videos[activeIndex];
+
+
+    if (
+      !transitioning &&
+
+      Number.isFinite(
+        activeVideo.duration
+      ) &&
+
+      activeVideo.duration >
+      fadeDuration &&
+
+      activeVideo.currentTime >=
+      activeVideo.duration -
+      fadeDuration
+    ){
+
+      beginCrossfade();
+
+    }
+
+
+    animationFrameId =
+      requestAnimationFrame(
+        monitorPlayback
+      );
+
+  }
+
+
+  videos.forEach(
+    video => {
+
+      video.addEventListener(
+        "ended",
+        beginCrossfade
+      );
+
+
+      video.addEventListener(
+        "error",
+        () => {
+
+          const otherVideo =
+            videos.find(
+              item =>
+                item !== video
+            );
+
+
+          if (
+            video ===
+            videos[activeIndex] &&
+            otherVideo
+          ){
+
+            safelyPlay(
+              otherVideo
+            );
+
+
+            otherVideo.classList.add(
+              "is-active"
+            );
+
+
+            video.classList.remove(
+              "is-active"
+            );
+
+
+            activeIndex =
+              videos.indexOf(
+                otherVideo
+              );
+
+
+            transitioning =
+              false;
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  safelyPlay(
+    videos[0]
+  );
+
+
+  animationFrameId =
+    requestAnimationFrame(
+      monitorPlayback
+    );
+
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if (
+        document.hidden
+      ){
+
+        videos.forEach(
+          video =>
+            video.pause()
+        );
+
+      }else{
+
+        safelyPlay(
+          videos[activeIndex]
+        );
+
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "beforeunload",
+    () => {
+
+      cancelAnimationFrame(
+        animationFrameId
+      );
+
+    }
+  );
+
 })();
 </script>
+
+
+
+<!-- REVEALS -->
+
+<script>
+(() => {
+
+  const heroGroup = [
+
+    document.querySelector(
+      ".hero-copy"
+    )
+
+  ].filter(Boolean);
+
+
+  const scrollGroups = [
+
+    [
+
+      document.querySelector(
+        "#our-focus .kicker"
+      ),
+
+      document.querySelector(
+        "#our-focus h2"
+      ),
+
+      document.querySelector(
+        "#our-focus p"
+      )
+
+    ],
+
+
+    [
+
+      document.querySelector(
+        "#investors .kicker"
+      ),
+
+      document.querySelector(
+        "#investors h2"
+      ),
+
+      document.querySelector(
+        "#investors p"
+      )
+
+    ],
+
+
+    [
+      document.querySelector(
+        "#about .about-image-wrap"
+      ),
+
+      document.querySelector(
+        "#about h2"
+      ),
+
+      document.querySelector(
+        "#about p"
+      )
+    ],
+
+
+    [
+
+      document.querySelector(
+        "#contact .contact-button"
+      ),
+
+      document.querySelector(
+        "#contact .contact-email"
+      )
+
+    ]
+
+  ].map(
+    group =>
+      group.filter(Boolean)
+  );
+
+
+  const allGroups = [
+
+    heroGroup,
+
+    ...scrollGroups
+
+  ];
+
+
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+  allGroups.forEach(
+    group => {
+
+      group.forEach(
+        (
+          element,
+          index
+        ) => {
+
+          element.classList.add(
+            "reveal-text"
+          );
+
+
+          element.style.setProperty(
+            "--reveal-delay",
+            `${index * 105}ms`
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  if (
+    reducedMotion
+  ){
+
+    allGroups
+      .flat()
+      .forEach(
+        element => {
+
+          element.classList.add(
+            "is-visible"
+          );
+
+        }
+      );
+
+
+    return;
+
+  }
+
+
+  requestAnimationFrame(
+    () => {
+
+      requestAnimationFrame(
+        () => {
+
+          window.setTimeout(
+            () => {
+
+              heroGroup.forEach(
+                element => {
+
+                  element.classList.add(
+                    "is-visible"
+                  );
+
+                }
+              );
+
+            },
+            120
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  if (
+    !(
+      "IntersectionObserver"
+      in window
+    )
+  ){
+
+    scrollGroups
+      .flat()
+      .forEach(
+        element => {
+
+          element.classList.add(
+            "is-visible"
+          );
+
+        }
+      );
+
+
+    return;
+
+  }
+
+
+  const observer =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              !entry.isIntersecting
+            ) return;
+
+
+            const group =
+              scrollGroups.find(
+                items =>
+                  items.includes(
+                    entry.target
+                  )
+              );
+
+
+            if (!group) return;
+
+
+            group.forEach(
+              element => {
+
+                element.classList.add(
+                  "is-visible"
+                );
+
+
+                observer.unobserve(
+                  element
+                );
+
+              }
+            );
+
+          }
+        );
+
+      },
+
+      {
+        threshold:.22,
+
+        rootMargin:
+          "0px 0px -8% 0px"
+      }
+
+    );
+
+
+  scrollGroups.forEach(
+    group => {
+
+      group.forEach(
+        element => {
+
+          observer.observe(
+            element
+          );
+
+        }
+      );
+
+    }
+  );
+
+})();
+</script>
+
 
 </body>
 </html>
