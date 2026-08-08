@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Home - Nomad Capital Ventures</title>
+<title>Nomad Capital Ventures</title>
 
 <style>
 *{
@@ -72,12 +72,9 @@ main{
 
 .hero{
   position:relative;
-
   width:100%;
   min-height:100vh;
-
   margin:0 0 28px;
-
   overflow:hidden;
 
   display:flex;
@@ -86,7 +83,6 @@ main{
   justify-content:center;
 
   text-align:center;
-
   isolation:isolate;
 
   background:#070a08;
@@ -118,7 +114,6 @@ main{
   will-change:opacity;
 
   z-index:-3;
-
   pointer-events:none;
 }
 
@@ -197,7 +192,6 @@ main{
   z-index:50;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 }
@@ -212,7 +206,6 @@ main{
 
 .nav-links{
   display:flex;
-
   gap:24px;
 
   font-size:15px;
@@ -221,9 +214,7 @@ main{
 
 .nav-links a{
   color:var(--gold-text);
-
   text-decoration:none;
-
   opacity:.9;
 }
 
@@ -244,7 +235,6 @@ main{
   transform:translateY(-50%);
 
   display:inline-flex;
-
   align-items:center;
   justify-content:center;
 
@@ -252,9 +242,7 @@ main{
 
   padding:9px 18px;
 
-  border:
-    1px solid
-    rgba(216,192,146,.52);
+  border:1px solid rgba(216,192,146,.52);
 
   color:var(--silver-text);
 
@@ -277,11 +265,9 @@ main{
 .top-contact-button:hover{
   color:#fff;
 
-  border-color:
-    rgba(216,192,146,.9);
+  border-color:rgba(216,192,146,.9);
 
-  background:
-    rgba(216,192,146,.06);
+  background:rgba(216,192,146,.06);
 
   transform:
     translateY(-50%)
@@ -302,12 +288,10 @@ main{
   z-index:1;
 
   display:flex;
-
   align-items:center;
   justify-content:flex-start;
 
   transform:translateY(-50%);
-
   transform-origin:center center;
 
   will-change:left,top,transform;
@@ -323,7 +307,6 @@ main{
   object-fit:contain;
 
   transform:scale(1);
-
   transform-origin:center center;
 
   will-change:transform;
@@ -346,7 +329,6 @@ main{
   width:100%;
 
   display:flex;
-
   justify-content:center;
 
   padding:0 20px;
@@ -362,7 +344,6 @@ h1{
   font-size:clamp(22px,3vw,36px);
 
   line-height:1.18;
-
   font-weight:400;
 
   letter-spacing:-.025em;
@@ -439,7 +420,6 @@ h1 .muted{
   height:48px;
 
   display:flex;
-
   justify-content:center;
   align-items:center;
 
@@ -508,7 +488,6 @@ h1 .muted{
 
 .section.full{
   display:block;
-
   text-align:center;
 }
 
@@ -521,9 +500,7 @@ h1 .muted{
   position:relative;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
   justify-content:center;
 
@@ -547,9 +524,7 @@ h1 .muted{
   position:relative;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
   justify-content:center;
 
@@ -607,8 +582,7 @@ h1 .muted{
 
   color:var(--accent);
 
-  -webkit-text-fill-color:
-    var(--accent);
+  -webkit-text-fill-color:var(--accent);
 
   -webkit-text-stroke:0;
 
@@ -640,7 +614,6 @@ h2{
     );
 
   -webkit-background-clip:text;
-
   background-clip:text;
 
   -webkit-text-fill-color:transparent;
@@ -657,15 +630,12 @@ p{
   color:var(--silver-text);
 
   font-size:17px;
-
   font-weight:400;
 }
 
 
 /* ==================================================
    ABOUT SECTION
-   No visible "About" heading.
-   Navigation still points to #about.
    ================================================== */
 
 .about-section{
@@ -698,7 +668,6 @@ p{
   margin-left:70px;
 
   display:flex;
-
   align-items:center;
 
   padding:
@@ -736,7 +705,6 @@ p{
   position:absolute;
 
   left:-70px;
-
   top:-78px;
 
   width:min(44vw,500px);
@@ -788,7 +756,6 @@ p{
   padding:0;
 
   display:flex;
-
   flex-direction:column;
 
   align-items:flex-start;
@@ -796,6 +763,28 @@ p{
 
   text-align:left;
 }
+
+
+/*
+  "About" now matches the bio paragraph exactly
+  in size, weight, line height and letter spacing.
+  Only the color is gold.
+*/
+.about-label{
+  margin:0 0 10px;
+
+  color:var(--accent);
+
+  font-size:17px;
+  font-weight:400;
+
+  line-height:1.75;
+
+  letter-spacing:normal;
+
+  text-transform:none;
+}
+
 
 .about-copy h2{
   margin-bottom:26px;
@@ -809,8 +798,11 @@ p{
   margin:0;
 
   font-size:17px;
+  font-weight:400;
 
   line-height:1.75;
+
+  letter-spacing:normal;
 
   color:var(--silver-text);
 }
@@ -858,7 +850,6 @@ p{
   color:#0b0c0b;
 
   font:inherit;
-
   font-weight:500;
 
   text-decoration:none;
@@ -1009,7 +1000,6 @@ footer{
     padding:14px;
 
     display:flex;
-
     flex-direction:column;
 
     gap:4px;
@@ -1126,8 +1116,7 @@ footer{
 
   /* ==================================================
      MOBILE ABOUT
-     Same side-by-side composition.
-     No visible About label.
+     Same composition as desktop
      ================================================== */
 
   .about-section{
@@ -1206,11 +1195,9 @@ footer{
 
   .about-copy{
     width:100%;
-
     min-width:0;
 
     margin:0;
-
     padding:0;
 
     display:flex;
@@ -1221,6 +1208,23 @@ footer{
     justify-content:center;
 
     text-align:left;
+  }
+
+
+  /*
+    Same styling as the mobile bio copy.
+  */
+  .about-label{
+    margin:0 0 8px;
+
+    font-size:
+      clamp(10px,3vw,14px);
+
+    font-weight:400;
+
+    line-height:1.5;
+
+    letter-spacing:normal;
   }
 
 
@@ -1245,7 +1249,11 @@ footer{
     font-size:
       clamp(10px,3vw,14px);
 
+    font-weight:400;
+
     line-height:1.5;
+
+    letter-spacing:normal;
   }
 
 
@@ -1295,6 +1303,23 @@ footer{
   }
 
 
+  /*
+    Same styling as bio on small phones.
+  */
+  .about-label{
+    margin:0 0 7px;
+
+    font-size:
+      clamp(10px,2.8vw,12px);
+
+    font-weight:400;
+
+    line-height:1.45;
+
+    letter-spacing:normal;
+  }
+
+
   .about-copy h2{
     font-size:
       clamp(17px,5vw,22px);
@@ -1307,7 +1332,11 @@ footer{
     font-size:
       clamp(10px,2.8vw,12px);
 
+    font-weight:400;
+
     line-height:1.45;
+
+    letter-spacing:normal;
   }
 
 }
@@ -1369,7 +1398,6 @@ footer{
   }
 
 }
-
 </style>
 </head>
 
@@ -1440,10 +1468,6 @@ footer{
       Investors
     </a>
 
-    <!--
-      This still scrolls to the About section.
-      Only the visible About heading was removed.
-    -->
     <a href="#about">
       About
     </a>
@@ -1616,14 +1640,10 @@ footer{
     id="about"
   >
 
-    <!--
-      No visible "About" word here.
-      No underline.
-      The #about ID remains for navigation.
-    -->
-
     <div class="about-card">
 
+
+      <!-- PHOTO -->
 
       <div class="about-image-wrap">
 
@@ -1635,7 +1655,13 @@ footer{
       </div>
 
 
+      <!-- BIO -->
+
       <div class="about-copy">
+
+        <div class="about-label">
+          About
+        </div>
 
         <h2>
           Dan &amp; Lynda Damon
@@ -1693,7 +1719,9 @@ footer{
 
 
 
-<!-- HEADER SCROLL ANIMATION -->
+<!-- ==================================================
+     HEADER SCROLL ANIMATION
+     ================================================== -->
 
 <script>
 (() => {
@@ -2194,7 +2222,9 @@ footer{
 
 
 
-<!-- HERO VIDEO CROSSFADE -->
+<!-- ==================================================
+     HERO VIDEO CROSSFADE
+     ================================================== -->
 
 <script>
 (() => {
@@ -2571,7 +2601,9 @@ footer{
 
 
 
-<!-- REVEALS -->
+<!-- ==================================================
+     REVEALS
+     ================================================== -->
 
 <script>
 (() => {
@@ -2622,8 +2654,13 @@ footer{
 
 
     [
+
       document.querySelector(
         "#about .about-image-wrap"
+      ),
+
+      document.querySelector(
+        "#about .about-label"
       ),
 
       document.querySelector(
@@ -2633,6 +2670,7 @@ footer{
       document.querySelector(
         "#about p"
       )
+
     ],
 
 
